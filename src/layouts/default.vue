@@ -2,7 +2,7 @@
 
 <template lang="pug">
 div
-  h1 Layout
+  TheHeader
   router-view
 </template>
 

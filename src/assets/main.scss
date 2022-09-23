@@ -35,3 +35,11 @@ h5 {
 h6 {
   @apply text-base;
 }
+
+img {
+  @apply w-full h-auto;
+}
+
+.container {
+  @apply w-full px-6 max-w-7xl mx-auto;
+}
