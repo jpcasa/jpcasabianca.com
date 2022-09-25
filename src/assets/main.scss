@@ -43,3 +43,41 @@ img {
 .container {
   @apply w-full px-6 max-w-7xl mx-auto;
 }
+
+.container-medium {
+  @apply w-full px-6 max-w-5xl mx-auto;
+}
+
+.container-small {
+  @apply w-full px-6 max-w-3xl mx-auto;
+}
+
+.typed {
+  font-family: 'DM Serif Display', serif !important;
+}
+
+.is-typed span.cursor {
+  @apply bg-teal-800 inline-block w-1;
+  animation: blink 1s infinite;
+}
+.is-typed span.underscore {
+  width: 10px;
+  height: 1px;
+  @apply bg-teal-800 inline-flex items-end;
+  animation: blink 1s infinite;
+}
+.is-typed span.cursor.typing {
+  animation: none;
+}
+
+@keyframes blink {
+  49% {
+    @apply bg-teal-800;
+  }
+  50% {
+    background-color: transparent;
+  }
+  99% {
+    background-color: transparent;
+  }
+}

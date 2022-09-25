@@ -194,7 +194,7 @@
   dependencies:
     "@vue/shared" "3.2.39"
 
-"@vue/runtime-core@3.2.39":
+"@vue/runtime-core@3.2.39", "@vue/runtime-core@latest":
   version "3.2.39"
   resolved "https://registry.yarnpkg.com/@vue/runtime-core/-/runtime-core-3.2.39.tgz#dc1faccab11b3e81197aba33fb30c9447c1d2c84"
   integrity sha512-xKH5XP57JW5JW+8ZG1khBbuLakINTgPuINKL01hStWLTTGFOrM49UfCFXBcFvWmSbci3gmJyLl2EAzCaZWsx8g==
@@ -202,7 +202,7 @@
     "@vue/reactivity" "3.2.39"
     "@vue/shared" "3.2.39"
 
-"@vue/runtime-dom@3.2.39":
+"@vue/runtime-dom@3.2.39", "@vue/runtime-dom@latest":
   version "3.2.39"
   resolved "https://registry.yarnpkg.com/@vue/runtime-dom/-/runtime-dom-3.2.39.tgz#4a8cb132bcef316e8151c5ed07fc7272eb064614"
   integrity sha512-4G9AEJP+sLhsqf5wXcyKVWQKUhI+iWfy0hWQgea+CpaTD7BR0KdQzvoQdZhwCY6B3oleSyNLkLAQwm0ya/wNoA==
@@ -372,6 +372,11 @@ character-parser@^2.2.0:
   dependencies:
     is-regex "^1.0.3"
 
+chart.js@^3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.9.1.tgz#3abf2c775169c4c71217a107163ac708515924b8"
+  integrity sha512-Ro2JbLmvg83gXF5F4sniaQ+lTbSv18E+TIf2cOeiH1Iqd2PGFOtem+DUufMZsCJwFE7ywPOpfXFBwRTGq7dh6w==
+
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
@@ -408,6 +413,11 @@ csstype@^2.6.8:
   version "2.6.21"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.21.tgz#2efb85b7cc55c80017c66a5ad7cbd931fda3a90e"
   integrity sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==
+
+csstype@latest:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
+  integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
 csstype@~3.0.5:
   version "3.0.11"
@@ -1021,7 +1031,7 @@ local-pkg@^0.4.2:
   resolved "https://registry.yarnpkg.com/local-pkg/-/local-pkg-0.4.2.tgz#13107310b77e74a0e513147a131a2ba288176c2f"
   integrity sha512-mlERgSPrbxU3BP4qBqAvvwlgW4MTg78iwJdGGnv7kibKjWcJksrG3t6LB5lXI93wXRDvG4NpUgJFmTG4T6rdrg==
 
-lodash-es@^4.17.21:
+lodash-es@^4.17.21, lodash-es@latest:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
@@ -1460,6 +1470,11 @@ treemate@^0.3.11:
   resolved "https://registry.yarnpkg.com/treemate/-/treemate-0.3.11.tgz#7d52f8f69ab9ce326f8d139e0a3d1ffb25e48222"
   integrity sha512-M8RGFoKtZ8dF+iwJfAJTOH/SM4KluKOKRJpjCMhI8bG3qB74zrFoArKZ62ll0Fr3mqkMJiQOmWYkdYgDeITYQg==
 
+typewriter-vue@^0.5.19:
+  version "0.5.19"
+  resolved "https://registry.yarnpkg.com/typewriter-vue/-/typewriter-vue-0.5.19.tgz#4dd55b505245d1d1177dd4d814fc675a9e9883f8"
+  integrity sha512-rVgnc8jiIBCw8B3FnL3EFDNu611g/cwgzWLIotaord66JAq585DotS0K0I9zlC3Jq510XofNgDpD4+b0CQkJmw==
+
 ufo@^0.8.5:
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-0.8.5.tgz#e367b4205ece9d9723f2fa54f887d43ed1bce5d0"
@@ -1594,6 +1609,16 @@ vooks@^0.2.12, vooks@^0.2.4:
   dependencies:
     evtd "^0.2.2"
 
+vue-chart-3@^3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-3.1.8.tgz#4ca4cba0a51ea2851a657a132bc14bf8c3ba1da2"
+  integrity sha512-zX5ajjQi/PocEqLETlej3vp92q/tnI/Fvu2RVb++Kap8qOrXu6PXCpodi73BFrWzEGZIAnqoUxC3OIkRWD657g==
+  dependencies:
+    "@vue/runtime-core" latest
+    "@vue/runtime-dom" latest
+    csstype latest
+    lodash-es latest
+
 vue-demi@*:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
@@ -1612,6 +1637,11 @@ vue-router@^4.1.5:
   integrity sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ==
   dependencies:
     "@vue/devtools-api" "^6.1.4"
+
+vue-writer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vue-writer/-/vue-writer-1.2.0.tgz#8b7b8f5bae3a42d74a9577d6557d2aa42432520b"
+  integrity sha512-EtunS6F12cyhXkKgIKDQxr6QEJpSmj4rUSqE149XZN5vbPQuX7PIbWovA1oPvGYUxrlq5HHobdZAzOzSeNAG7g==
 
 vue@^3.2.37:
   version "3.2.39"

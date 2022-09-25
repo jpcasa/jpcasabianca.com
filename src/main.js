@@ -4,11 +4,13 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 
 import { createPinia } from 'pinia'
+import VueWriter from 'vue-writer'
 
 import 'virtual:windi.css'
 import '~/assets/main.scss'
 
 import App from './App.vue'
+
 
 // ROUTES
 const routes = setupLayouts(generatedRoutes)
@@ -18,7 +20,7 @@ const router = createRouter({ history: createWebHistory(), routes })
 const pinia = createPinia()
 
 // DEFINE APP
-const app = createApp(App).use(router).use(pinia)
+const app = createApp(App).use(router).use(pinia).use(VueWriter)
 
 // MOUNT APP
 await router.isReady()

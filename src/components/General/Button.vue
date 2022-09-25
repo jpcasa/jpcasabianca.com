@@ -1,21 +1,54 @@
 <script setup>
+const router = useRouter()
+
 // define props
-defineProps({
+const props = defineProps({
   type: {
     type: String,
     default: 'default'
+  },
+  size: {
+    type: String,
+    default: 'sm'
+  },
+  link: {
+    type: String,
+    default: null
   }
 })
+
+const emit = defineEmits(['click'])
+
+const clicked = () => {
+  if (props.link) router.push(props.link)
+  emit('click')
+}
 </script>
 
 <template lang="pug">
-button(:class="[type]")
+button(:class="[type, size]" @click="clicked()")
   slot
 </template>
 
 <style lang="scss" scoped>
 button {
-  @apply inline-flex px-3 py-1 rounded text-sm;
+  @apply inline-flex rounded;
+}
+
+button.xs {
+  @apply px-2 py-1 text-xs;
+}
+
+button.sm {
+  @apply px-3 py-1 text-sm;
+}
+
+button.md {
+  @apply px-4 py-2 text-base;
+}
+
+button.lg {
+  @apply px-6 py-3 text-base;
 }
 
 button.primary {
