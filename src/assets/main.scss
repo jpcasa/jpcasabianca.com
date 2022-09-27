@@ -44,8 +44,16 @@ img {
   @apply w-full px-6 max-w-7xl mx-auto;
 }
 
+.container-large {
+  @apply w-full px-6 max-w-6xl mx-auto;
+}
+
 .container-medium {
   @apply w-full px-6 max-w-5xl mx-auto;
+}
+
+.container-4 {
+  @apply w-full px-6 max-w-4xl mx-auto;
 }
 
 .container-small {

@@ -74,4 +74,21 @@ button.secondary {
 button.dark {
   @apply text-white bg-teal-800 hover:bg-teal-900;
 }
+
+button.black {
+  @apply text-white bg-black;
+}
+
+button.minimal {
+  @apply text-slate-600 border border-slate-200;
+
+  &:hover {
+    @apply bg-slate-100;
+  }
+}
+
+button.purple {
+  @apply text-white;
+  background-color: #7F56D9;
+}
 </style>

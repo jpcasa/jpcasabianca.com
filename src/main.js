@@ -11,7 +11,6 @@ import '~/assets/main.scss'
 
 import App from './App.vue'
 
-
 // ROUTES
 const routes = setupLayouts(generatedRoutes)
 const router = createRouter({ history: createWebHistory(), routes })

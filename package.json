@@ -11,8 +11,11 @@
   "dependencies": {
     "@vueuse/core": "^9.2.0",
     "@vueuse/head": "^0.7.12",
+    "axios": "^0.27.2",
     "chart.js": "^3.9.1",
+    "dotenv": "^16.0.2",
     "pinia": "^2.0.22",
+    "qs": "^6.11.0",
     "typewriter-vue": "^0.5.19",
     "unplugin-auto-import": "^0.11.2",
     "unplugin-vue-components": "^0.22.7",

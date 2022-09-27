@@ -1,25 +1,46 @@
 <script setup>
 import { NDatePicker } from 'naive-ui'
 
+// import api composable
+import { useApi } from '~/composables/api'
+
 // import skills pinia store
 import { useSkillsStore } from '~/stores/skills'
+import { useExperienceStore } from '~/stores/experience'
 
 const skillsStore = useSkillsStore()
+const experienceStore = useExperienceStore()
+
+const { getCaseStudies, loading } = useApi()
 
 const { skillActive } = storeToRefs(skillsStore)
 
 const tags = [
-  { label: 'Design', value: 'design' },
-  { label: 'Frontend', value: 'frontend' },
-  { label: 'Backend', value: 'backend' },
-  { label: 'Marketing', value: 'marketing' },
-  { label: 'Customer Success', value: 'customer-success' },
-  { label: 'Sales', value: 'sales' },
+  { label: 'Design', value: 'design', type: 'blue' },
+  { label: 'Frontend', value: 'frontend', type: 'green' },
+  { label: 'Backend', value: 'backend', type: 'pink' },
+  { label: 'Marketing', value: 'marketing', type: 'purple' },
+  { label: 'Customer Success', value: 'customer-success', type: 'blue-dark' },
+  { label: 'Business', value: 'business', type: 'orange' },
+  { label: 'Sales', value: 'sales', type: 'red' },
 ]
 
 const range = ref([118313526e4, Date.now()])
 
 const setSkillTab = tab => skillActive.value = tab
+
+const loadCaseStudies = async () => {
+  const [error, response] = await getCaseStudies()
+  if (error) {
+    console.log(error)
+    return
+  }
+  experienceStore.setCaseStudies(response.data)
+}
+
+onMounted(() => {
+  loadCaseStudies()
+})
 </script>
 
 <template lang="pug">
@@ -64,25 +85,119 @@ const setSkillTab = tab => skillActive.value = tab
   .experience
     .container-medium
       .experience-left
-        TextSection(padding="p-0" text-align="text-left")
-        .filter-date
-          p.label Filter experience by date:
-          n-date-picker(v-model:value="range" type="daterange")
+        TextSection(
+          title="My Experience"
+          subtitle="The companies I’ve worked with"
+          padding="p-0"
+          text-align="text-left"
+        )
         .filter-tags
           p.label Filter experience by subject:
           .tags
-            Tag(v-for="(tag, i) in tags" :key="i") {{ tag.label }}
+            .tag-parent
+              Tag(
+                v-for="(tag, i) in tags"
+                :key="i"
+                :type="experienceStore.subjectFilters.includes(tag.value) ? tag.type : 'default'"
+                size="md"
+                border
+                cursor
+                @click="experienceStore.toggleSubjectFilter(tag)"
+              ) {{ tag.label }}
       .experience-right
-        h2 Algo más
+        .filters-active(v-if="experienceStore.subjectFiltersString")
+          span Filtered by:
+          p {{ experienceStore.subjectFiltersString }}
+        .experience-row(
+          v-for="(exp, i) in experienceStore.experiences"
+          :key="i"
+        )
+          ExperienceCard(
+            :company="exp.company"
+            :logo="exp.logo"
+            :role="exp.role"
+            :startDate="exp.startDate"
+            :endDate="exp.endDate"
+            :tags="exp.tags"
+            :summary="exp.summary"
+            :location="exp.location"
+          )
+        .pagination-parent(v-if="!experienceStore.subjectFilters.length")
+          Pagination(
+            :page="experienceStore.page"
+            :page-count="experienceStore.pages"
+            @page-change="experienceStore.changePage"
+          )
+        .pagination-clear(v-else)
+          Button(
+            type="minimal"
+            size="md"
+            @click="experienceStore.clearFilters()"
+          )
+            span Clear Filters
+            i.uil.uil-times
+  .case-studies
+    .loading(v-if="loading")
+      p Loading case studies...
+    div(v-else-if="!loading && experienceStore.caseStudies")
+      .case-study(v-for="(caseStudy, i) in experienceStore.caseStudies" :key="i")
+        CaseStudySummary(:case-study="caseStudy")
+  .usual-apps
+    .container-4
+      TextSection(
+        title="My Usual Apps"
+        subtitle="Some of the apps I use everyday"
+      )
+      .apps
+        .app(v-for="i in 18" :key="i")
+          img(:src="`/img/apps/app-${i}.png`" alt="JP Casabianca App")
+  .testimonies
+    .container-4
+      TextSection(
+        title="What People are Saying..."
+        subtitle="Some honest testimonials from people I’ve worked with"
+      )
+      TestimonySlider
 </template>
 
 <style lang="scss" scoped>
 .about-page {
-  @apply bg-gray-100 pb-24;
+  @apply bg-gray-100;
+}
+
+.pagination-clear {
+  i {
+    @apply ml-1;
+  }
+}
+
+.testimonies {
+  @apply bg-white;
+
+  .container-4 {
+    @apply mb-24;
+  }
+}
+
+.usual-apps {
+  @apply py-12;
+
+  .apps {
+    @apply grid gap-6 grid-cols-4 sm:grid-cols-5 md:grid-cols-7;
+    @apply lg:grid-cols-9 mb-20;
+
+    .app {
+      @apply text-center;
+      
+      img {
+        @apply h-12 w-auto mx-auto;
+      }
+    }
+  }
 }
 
 .experience {
-  @apply -mt-32 bg-white;
+  @apply -mt-32 bg-white pb-32;
 
   .container-medium {
     @apply pt-72;
@@ -91,12 +206,42 @@ const setSkillTab = tab => skillActive.value = tab
       @apply flex;
 
       .experience-left {
-        @apply w-64 mr-8 flex-none;
+        @apply w-72 mr-8 flex-none;
+
+        .filter-date,
+        .filter-tags {
+          @apply mt-8;
+        }
+
+        .label {
+          @apply text-teal-900 font-medium mb-3;
+        }
       }
 
       .experience-right {
         @apply flex-auto;
+
+        .filters-active {
+          @apply capitalize text-sm text-gray-500 mb-4 flex flex-wrap;
+          @apply border-b border-slate-200 pb-4;
+
+          span {
+            @apply text-black font-medium mr-1;
+          }
+        }
+
+        .experience-row {
+          @apply mb-8 pb-8 border-b border-slate-200;
+        }
       }
+    }
+  }
+
+  .tags {
+    @apply flex flex-wrap;
+
+    .tag {
+      @apply mr-1 mb-1;
     }
   }
 }
