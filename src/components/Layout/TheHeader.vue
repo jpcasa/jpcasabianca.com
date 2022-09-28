@@ -22,7 +22,7 @@ const buttonTypes = computed(() => {
 
 const handleScroll = event => {
   windowScroll.value = window.scrollY
-  if (windowScroll.value > 500) {
+  if (windowScroll.value > 350) {
     headerMode.value = 'light'
     withBg.value = true
   } else {
@@ -140,10 +140,21 @@ header.dark {
       @apply text-teal-500 underline;
     }
   }
+
+  .mobile-icon {
+    i {
+      @apply text-white;
+    }
+  }
 }
 
 header.with-bg {
-  @apply bg-white bg-opacity-75;
+  @apply bg-white border-b border-slate-200;
+
+  @screen lg {
+    @apply bg-opacity-80;
+    border-bottom: none;
+  }
 }
 
 .mobile-nav-bottom {

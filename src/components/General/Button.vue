@@ -73,6 +73,10 @@ button.secondary {
 
 button.dark {
   @apply text-white bg-teal-800 hover:bg-teal-900;
+
+  &:hover {
+    @apply bg-teal-700;
+  }
 }
 
 button.black {

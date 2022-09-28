@@ -1,12 +1,33 @@
 <script setup>
+import { NSelect } from 'naive-ui'
+
+import { useApi } from '~/composables/api'
 import { useResourcesStore } from '~/stores/resources'
 
 const resourcesStore = useResourcesStore()
+const { getResources, loading } = useApi()
+
+const loadResources = async () => {
+  const [error, response] = await getResources()
+  if (error) {
+    console.log(error)
+    return
+  }
+  resourcesStore.setResources(response.data)
+}
+
+const setImage = id => {
+  return `${import.meta.env.VITE_ASSETS_URL}/${id}.png`
+}
+
+onMounted(() => {
+  loadResources()
+})
 </script>
 
 <template lang="pug">
 .resources-page
-  PageHeader
+  PageHeader(align="center")
     .small-cont
       p Let’s get some shit done!
       h1 Resources
@@ -14,24 +35,31 @@ const resourcesStore = useResourcesStore()
   .container
     .filters
       .filters-mobile
-        p {{ resourcesStore.resourcesFilter.label }}
-        i.uil.uil-angle-down
-      .filters-desktop
-        .filter(
-          v-for="(filter, i) in resourcesStore.resourcesFilters"
-          :class="{ active: resourcesStore.resourcesFilter.value == filter.value }"
-          :key="i"
-          @click="resourcesStore.setResourcesFilter(filter)"
+        n-select(
+          :options="resourcesStore.resourcesFilters"
+          v-model:value="resourcesStore.resourcesFilter.value"
         )
-          p {{ filter.label }}
+      .filters-desktop
+        .filters-menu
+          .filter(
+            v-for="(filter, i) in resourcesStore.resourcesFilters"
+            :class="{ active: resourcesStore.resourcesFilter.value == filter.value }"
+            :key="i"
+            @click="resourcesStore.setResourcesFilter(filter)"
+          )
+            p {{ filter.label }}
+        .filters-faqs
+          CV
     .resources
-      .resource(
+      a.resource(
         v-for="(item, i) in resourcesStore.activeResources"
+        target="_blank"
+        :href="item.url"
         :key="i"
       )
         .resource-cont
           img.icon(
-            :src="item.icon"
+            :src="setImage(item.icon)"
             :alt="item.name"
             :class="{ horizontal: item.horizontal }"
           )
@@ -48,13 +76,17 @@ const resourcesStore = useResourcesStore()
 
     .resource {
       @apply bg-white rounded border border-slate-200 py-8 px-6;
-      @apply flex items-center text-center;
+      @apply flex items-center text-center cursor-pointer;
+
+      &:hover {
+        @apply border-teal-500;
+      }
 
       img {
         @apply h-12 w-auto mx-auto;
 
         &.horizontal {
-          @apply h-auto w-3/5;
+          @apply h-auto w-3/4;
         }
       }
 
@@ -69,7 +101,7 @@ const resourcesStore = useResourcesStore()
   }
   
   .small-cont {
-    @apply max-w-2xl;
+    @apply max-w-2xl mx-auto;
 
     p {
       @apply text-teal-500 font-medium mb-3;
@@ -97,14 +129,22 @@ const resourcesStore = useResourcesStore()
 
 .filters {
   .filters-mobile {
-    @apply md:hidden;
+    @apply md:hidden mb-4;
   }
 
   .filters-desktop {
-    @apply hidden md:block bg-white rounded border border-slate-200;
+    @apply hidden md:block;
+
+    .filters-menu {
+      @apply bg-white rounded border border-slate-200;
+    }
+
+    .filters-faqs {
+      @apply mt-8;
+    }
 
     .filter {
-      @apply py-3 px-4 text-slate-500 cursor-pointer border border-white;
+      @apply py-3 px-4 text-slate-500 text-sm cursor-pointer border border-white;
 
       &.active {
         @apply bg-teal-100 text-teal-600 border-teal-500;

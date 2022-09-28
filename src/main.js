@@ -21,6 +21,4 @@ const pinia = createPinia()
 // DEFINE APP
 const app = createApp(App).use(router).use(pinia).use(VueWriter)
 
-// MOUNT APP
-await router.isReady()
 app.mount('#app')

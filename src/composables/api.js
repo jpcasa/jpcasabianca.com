@@ -30,5 +30,31 @@ export function useApi() {
     }
   }
 
-  return { getCaseStudies, loading }
+  const getResources = async () => {
+    loading.value = true
+    try {
+      const { data } = await axiosClient.get('/resources')
+      loading.value = false
+      return [null, data]
+    } catch (error) {
+      console.error(error)
+      loading.value = false
+      return [error]
+    }
+  }
+
+  const createResource = async payload => {
+    loading.value = true
+    try {
+      const { data } = await axiosClient.post('/resources', payload)
+      loading.value = false
+      return [null, data]
+    } catch (error) {
+      console.error(error)
+      loading.value = false
+      return [error]
+    }
+  }
+
+  return { getCaseStudies, getResources, createResource, loading }
 }

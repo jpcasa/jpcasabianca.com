@@ -1,0 +1,45 @@
+<script setup></script>
+
+<template lang="pug">
+.resume
+  p Resume
+  .download
+    .icon-square
+      i.uil.uil-receipt
+    span jp-resume.pdf
+  Button(type="dark")
+    span Download
+    i.uil.uil-download-alt
+</template>
+
+<style lang="scss" scoped>
+.resume {
+  @apply bg-white rounded border border-slate-200 p-4;
+
+  p {
+    @apply text-teal-900 font-medium mb-4;
+  }
+
+  .download {
+    @apply flex items-center mb-6;
+
+    .icon-square {
+      @apply h-10 w-10 flex items-center justify-center rounded bg-teal-100 text-teal-600 mr-2;
+
+      i {
+        @apply text-xl leading-none;
+      }
+    }
+
+    span {
+      @apply text-slate-600;
+    }
+  }
+
+  button {
+    i {
+      @apply ml-1 leading-none text-base;
+    }
+  }
+}
+</style>

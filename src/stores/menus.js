@@ -30,9 +30,9 @@ export const useMenusStore = defineStore({
       },
       {
         name: 'Blog',
-        link: '/blog',
+        link: 'https://medium.com/@jpc_774',
         icon: 'uil-book-alt',
-        local: true,
+        local: false,
       }
     ],
     secondaryMenu: [

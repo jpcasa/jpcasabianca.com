@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useResourcesStore = defineStore({
   id: 'resources',
   state: () => ({
-    resourcesFilter: { label: 'Design & Research', value: 'design' },
+    resourcesFilter: { label: 'Product & Engineering', value: 'marketing' },
     resourcesFilters: [
       { label: 'View All', value: 'all' },
       { label: 'Design & Research', value: 'design' },
@@ -11,170 +11,154 @@ export const useResourcesStore = defineStore({
       { label: 'Productivity', value: 'productivity' },
       { label: 'Marketing & Analytics', value: 'marketing' },
     ],
-    resources: {
-      design: [
+    resourcess: {
+      productivity: [
         {
-          name: 'Figma',
-          icon: '/img/icons/figma.png',
-          url: 'https://www.figma.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Stack Browser",
+          "url": "https://stackbrowser.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Adobe Illustrator',
-          icon: '/img/icons/illustrator.png',
-          url: 'https://www.adobe.com/products/illustrator.html',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Firefox Developer Edition",
+          "url": "https://www.mozilla.org/en-US/firefox/developer/",
+          "subject": "productivity"
         },
         {
-          name: 'Framer',
-          icon: '/img/icons/framer.png',
-          url: 'https://www.framer.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Notion",
+          "url": "https://www.notion.so/",
+          "subject": "productivity"
         },
         {
-          name: 'Adobe Photoshop',
-          icon: '/img/icons/photoshop.png',
-          url: 'https://www.adobe.com/products/photoshop.html',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Slack",
+          "url": "https://slack.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Adobe XD',
-          icon: '/img/icons/adobe-xd.png',
-          url: 'https://www.adobe.com/products/xd.html',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Krisp.ai",
+          "url": "https://krisp.ai/",
+          "subject": "productivity"
         },
         {
-          name: 'Adobe After Effects',
-          icon: '/img/icons/after-effects.png',
-          url: 'https://www.adobe.com/products/aftereffects.html',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Medium",
+          "url": "https://medium.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Dribbble',
-          icon: '/img/icons/dribbble.png',
-          url: 'https://dribbble.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Surfshark",
+          "url": "https://surfshark.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Pinterest',
-          icon: '/img/icons/pinterest.png',
-          url: 'https://www.pinterest.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Mountain Duck",
+          "url": "https://mountainduck.io/",
+          "subject": "productivity"
         },
         {
-          name: 'Invision',
-          icon: '/img/icons/invision.png',
-          url: 'https://www.invisionapp.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Zoom",
+          "url": "https://zoom.us/",
+          "subject": "productivity"
         },
         {
-          name: 'Behance',
-          icon: '/img/icons/behance.png',
-          url: 'https://www.behance.net/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Todoist",
+          "url": "https://todoist.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Sketch',
-          icon: '/img/icons/sketch.png',
-          url: 'https://www.sketch.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Trello",
+          "url": "https://trello.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Abduzeedo',
-          icon: '/img/icons/abduzeedo.png',
-          url: 'https://abduzeedo.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Google Drive",
+          "url": "https://drive.google.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Very Good Emails',
-          icon: '/img/icons/very-good-emails.png',
-          url: 'https://verygoodemails.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Evernote",
+          "url": "https://evernote.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Awwwards',
-          icon: '/img/icons/awwwards.png',
-          url: 'https://www.awwwards.com/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'          
+          "name": "CloudApp",
+          "url": "https://www.getcloudapp.com/",
+          "subject": "productivity"
         },
         {
-          name: 'typewolf',
-          icon: '/img/icons/typewolf.png',
-          url: 'https://www.typewolf.com/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Grammarly",
+          "url": "https://www.grammarly.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Creative Market',
-          icon: '/img/icons/creative-market.png',
-          url: 'https://creativemarket.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Loom",
+          "url": "https://www.loom.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Freebiesbug',
-          icon: '/img/icons/freebiesbug.png',
-          url: 'https://freebiesbug.com/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Asana",
+          "url": "https://asana.com/",
+          "subject": "productivity"
         },
         {
-          name: 'ThemeForest',
-          icon: '/img/icons/themeforest.png',
-          url: 'https://themeforest.net/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Basecamp",
+          "url": "https://basecamp.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Google Fonts',
-          icon: '/img/icons/google-fonts.png',
-          url: 'https://fonts.google.com/',
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Numi",
+          "url": "https://numi.io/",
+          "subject": "productivity"
         },
         {
-          name: 'Coolors',
-          icon: '/img/icons/coolors.png',
-          url: 'https://coolors.co/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Feedly",
+          "url": "https://feedly.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Pantone',
-          icon: '/img/icons/pantone.png',
-          url: 'https://www.pantone.com/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Product Hunt",
+          "url": "https://www.producthunt.com/",
+          "subject": "productivity"
         },
         {
-          name: 'GoodUX',
-          icon: '/img/icons/goodux.png',
-          url: 'https://goodui.org/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Cloudinary",
+          "url": "https://cloudinary.com/",
+          "subject": "productivity"
         },
         {
-          name: 'Designspiration',
-          icon: '/img/icons/designspiration.png',
-          url: 'https://www.designspiration.net/',
-          horizontal: true,
-          description: 'Really short description of this product and why I use it everyday.'
+          "name": "Whereby",
+          "url": "https://whereby.com/",
+          "subject": "productivity"
+        },
+        {
+          "name": "Font Ninja",
+          "url": "https://fontninja.io/",
+          "subject": "productivity"
+        },
+        {
+          "name": "ColorZilla",
+          "url": "https://www.colorzilla.com/",
+          "subject": "productivity"
         }
       ]
     },
+    resources: null
   }),
   getters: {
     activeResources: state => {
-      if (state.resourcesFilter.value == 'all') {
-        return [
-          ...state.resources.design
-        ]
+      if (state.resources) {
+        if (state.resourcesFilter.value == 'all') {
+          return state.resources
+        }
+        return state.resources.filter(item => item.subject == state.resourcesFilter.value)
       }
-      return state.resources[state.resourcesFilter.value]
+      return null
     }
   },
   actions: {
     setResourcesFilter(filter) {
       this.resourcesFilter = filter
+    },
+    setResources(resources) {
+      this.resources = resources
     }
   }
 })
