@@ -1,4 +1,6 @@
 <script setup>
+import { NSelect } from 'naive-ui'
+
 defineProps({
   tabs: {
     type: Array,
@@ -16,19 +18,34 @@ const clickedTab = tab => emit('change', tab)
 </script>
 
 <template lang="pug">
-.tabs
-  .tab(
-    v-for="(tab, i) in tabs"
-    :key="i"
-    :class="{ active: tab.key == active }"
-    @click="clickedTab(tab.key)"
-  )
-    span {{ tab.title }}
+.tabs-cont
+  .tabs
+    .tab(
+      v-for="(tab, i) in tabs"
+      :key="i"
+      :class="{ active: tab.value == active }"
+      @click="clickedTab(tab.value)"
+    )
+      span {{ tab.label }}
+  .tabs-mobile
+    n-select(
+      :options="tabs"
+      v-model:value="active"
+    )
 </template>
 
 <style lang="scss" scoped>
+.tabs-mobile {
+  @apply md:hidden;
+}
+
+.tabs-cont {
+  @apply w-full;
+}
+
 .tabs {
-  @apply p-1 rounded bg-white border border-slate-200 inline-flex;
+  @apply p-1 rounded bg-white border border-slate-200;
+  @apply hidden md:inline-flex;
 
   .tab {
     @apply px-6 py-2 cursor-pointer border border-white rounded mr-1;

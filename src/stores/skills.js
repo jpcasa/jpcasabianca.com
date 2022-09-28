@@ -49,8 +49,8 @@ export const useSkillsStore = defineStore({
     skillActive: 'design',
     skills: [
       {
-        title: 'Design',
-        key: 'design',
+        label: 'Design',
+        value: 'design',
         items: [
           { name: 'Figma', icon: 'figma', level: 10, },
           { name: 'Illustrator', icon: 'illustrator', level: 10 },
@@ -67,8 +67,8 @@ export const useSkillsStore = defineStore({
         ]
       },
       {
-        title: 'Frontend',
-        key: 'frontend',
+        label: 'Frontend',
+        value: 'frontend',
         items: [
           { name: 'Vue.js', icon: 'vue', level: 10 },
           { name: 'Vue 3', icon: 'vue-3', level: 9 },
@@ -85,8 +85,8 @@ export const useSkillsStore = defineStore({
         ]
       },
       {
-        title: 'Backend / Dev Ops',
-        key: 'backend',
+        label: 'Backend / Dev Ops',
+        value: 'backend',
         items: [
           { name: 'Node.js', icon: 'nodejs', level: 8, },
           { name: 'Express', icon: 'express', level: 9 },
@@ -103,8 +103,8 @@ export const useSkillsStore = defineStore({
         ]
       },
       {
-        title: 'Marketing',
-        key: 'marketing',
+        label: 'Marketing',
+        value: 'marketing',
         items: [
           { name: 'Analytics', icon: 'google-analytics', level: 8 },
           { name: 'Google Ads', icon: 'google-ads', level: 7 },
@@ -125,7 +125,7 @@ export const useSkillsStore = defineStore({
   }),
   getters: {
     activeSkills: state => {
-      return state.skills.find(skill => skill.key === state.skillActive)
+      return state.skills.find(skill => skill.value === state.skillActive)
     },
     activeSoftSkill: state => {
       return state.softSkills[state.softSkillsIndex]
