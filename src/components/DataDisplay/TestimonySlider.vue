@@ -71,7 +71,11 @@ const prev = () => {
   }
 
   .img {
-    @apply flex mt-6 md:hidden;
+    @apply flex md:hidden;
+
+    img {
+      @apply rounded-b;
+    }
   }
 
   .options {

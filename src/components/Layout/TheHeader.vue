@@ -52,10 +52,8 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
           router-link(v-if="item.local" :to="item.link") {{ item.name }}
           a(v-if="!item.local" :href="item.link" target="_blank") {{ item.name }}
     .right
-      Button(:type="buttonTypes[0]") Social & CV
+      Button(:type="buttonTypes[0]") CV
       Button(:type="buttonTypes[1]") Let's Connect
-      .mobile-icon
-        i.uil.uil-bars
 .mobile-nav-bottom
   .mobile-nav-item(v-for="(item, i) in menusStore.mainMenu" :key="i")
     i.uil(:class="item.icon")
@@ -78,13 +76,17 @@ header {
   }
 
   .left {
-    @apply flex-auto lg:flex-none;
+    @apply flex-auto lg:flex-none flex items-center;
 
     .logo {
-      @apply w-40;
+      @apply w-36 sm:w-42;
 
       &:hover {
         @apply opacity-85;
+      }
+
+      a {
+        @apply flex items-center;
       }
     }
   }
@@ -93,19 +95,13 @@ header {
     @apply flex-none flex justify-end;
     
     button {
-      @apply hidden lg:inline-flex;
-
       &:first-child {
         @apply mr-1;
       }
     }
 
-    .mobile-icon {
-      @apply lg:hidden;
-
-      i {
-        @apply text-2xl cursor-pointer;
-      }
+    .button-desktop {
+      @apply hidden md:inline-flex;
     }
   }
 
@@ -158,8 +154,8 @@ header.with-bg {
 }
 
 .mobile-nav-bottom {
-  @apply fixed bottom-0 inset-x-0 bg-teal-800 z-10 grid;
-  @apply grid-cols-5 h-10 items-center lg:hidden;
+  @apply fixed bottom-0 inset-x-0 bg-teal-900 z-10 grid;
+  @apply grid-cols-5 h-12 items-center lg:hidden;
 
   .mobile-nav-item {
     @apply text-center text-white flex flex-col h-full justify-center;

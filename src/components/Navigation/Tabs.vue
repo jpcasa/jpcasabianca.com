@@ -36,11 +36,11 @@ const clickedTab = tab => emit('change', tab)
 
 <style lang="scss" scoped>
 .tabs-mobile {
-  @apply md:hidden;
+  @apply md:hidden w-full;
 }
 
 .tabs-cont {
-  @apply w-full;
+  @apply w-full flex justify-center;
 }
 
 .tabs {

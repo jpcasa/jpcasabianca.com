@@ -42,23 +42,23 @@ img {
 }
 
 .container {
-  @apply w-full px-6 max-w-7xl mx-auto;
+  @apply w-full max-w-7xl mx-auto px-6;
 }
 
 .container-large {
-  @apply w-full px-6 max-w-6xl mx-auto;
+  @apply w-full max-w-6xl mx-auto px-6;
 }
 
 .container-medium {
-  @apply w-full px-6 max-w-5xl mx-auto;
+  @apply w-full max-w-5xl mx-auto px-6;
 }
 
 .container-4 {
-  @apply w-full px-6 max-w-4xl mx-auto;
+  @apply w-full max-w-4xl mx-auto px-6;
 }
 
 .container-small {
-  @apply w-full px-6 max-w-3xl mx-auto;
+  @apply w-full max-w-3xl mx-auto px-6;
 }
 
 .typed {

@@ -60,7 +60,7 @@ onMounted(() => {
       img(src="/img/logos.png" alt="JP Casabianca - Apps")
     .skills
       .container-small
-        TextSection
+        TextSection(padding="pt-0 pb-4")
         .tabs-parent
           Tabs(
             :tabs="skillsStore.skills"
@@ -68,7 +68,7 @@ onMounted(() => {
             @change="setSkillTab"
           )
       .container-medium.skill-charts
-        Card(padding="p-8")
+        Card(padding="p-6")
           SkillChart(
             :datasets="skillsStore.activeSkills.items"
           )
@@ -161,6 +161,7 @@ onMounted(() => {
       TextSection(
         title="What People are Saying..."
         subtitle="Some honest testimonials from people I’ve worked with"
+        padding="py-24"
       )
       TestimonySlider(:testimonies="testimoniesStore.testimonies")
 </template>
@@ -189,7 +190,7 @@ onMounted(() => {
 
   .apps {
     @apply grid gap-6 grid-cols-4 sm:grid-cols-5 md:grid-cols-7;
-    @apply lg:grid-cols-9 mb-20;
+    @apply lg:grid-cols-9 mb-20 justify-center;
 
     .app {
       @apply text-center;
@@ -204,40 +205,48 @@ onMounted(() => {
 .experience {
   @apply -mt-32 bg-white pb-32;
 
+  .filter-date,
+  .filter-tags {
+    @apply mt-8;
+  }
+
+  .label {
+    @apply text-teal-900 font-medium mb-3;
+  }
+
+  .filters-active {
+    @apply capitalize text-sm text-gray-500 mb-4 flex flex-wrap;
+    @apply border-b border-slate-200 pb-4;
+
+    span {
+      @apply text-black font-medium mr-1;
+    }
+  }
+
+  .experience-row {
+    @apply mb-8 pb-8 border-b border-slate-200;
+
+    &:first-of-type {
+      @apply border-t border-slate-200 pt-8;
+    }
+  }
+
+  .experience-right {
+    @apply mt-8;        
+  }
+
   .container-medium {
-    @apply pt-72;
+    @apply pt-56;
 
     @screen md {
-      @apply flex;
+      @apply flex pt-72;
 
       .experience-left {
         @apply w-72 mr-8 flex-none;
-
-        .filter-date,
-        .filter-tags {
-          @apply mt-8;
-        }
-
-        .label {
-          @apply text-teal-900 font-medium mb-3;
-        }
       }
 
       .experience-right {
-        @apply flex-auto;
-
-        .filters-active {
-          @apply capitalize text-sm text-gray-500 mb-4 flex flex-wrap;
-          @apply border-b border-slate-200 pb-4;
-
-          span {
-            @apply text-black font-medium mr-1;
-          }
-        }
-
-        .experience-row {
-          @apply mb-8 pb-8 border-b border-slate-200;
-        }
+        @apply flex-auto mt-0;
       }
     }
   }
@@ -264,7 +273,7 @@ onMounted(() => {
   }
 
   p {
-    @apply text-gray-300 mt-6 mb-4;
+    @apply text-gray-300 mt-6 mb-8;
   }
 
   .container {
@@ -276,7 +285,7 @@ onMounted(() => {
   }
 
   .left {
-    @apply lg:pl-8;
+    @apply lg:pl-8 text-center lg:text-left;
   }
 }
 
@@ -284,12 +293,18 @@ onMounted(() => {
   @apply max-w-sm mx-auto pb-24;
 }
 
+.skills {
+  .container-small {
+    @apply px-0;
+  }
+}
+
 .tabs-parent {
   @apply flex justify-center mt-8 pb-8;
 }
 
 .skill-charts {
-  @apply grid gap-8;
+  @apply grid gap-8 px-0;
 }
 
 .soft-skills {

@@ -17,7 +17,7 @@ footer
     .container-4
       .main
         router-link.logo-link(to="/")
-          Logo
+          Logo(width="w-48")
         p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
       .menus
         .menu(v-for="(menu, i) in menusStore.allMenus" :key="i")
@@ -58,7 +58,7 @@ footer
       @apply flex;
 
       .main {
-        @apply flex-none w-64 pr-16;
+        @apply flex-none w-64 pr-16 text-left;
       }
     }
 
@@ -76,11 +76,11 @@ footer
   }
 
   .menu-title {
-    @apply text-sm text-slate-500 mb-4 mt-2 text-center;
+    @apply text-sm text-slate-500 mb-4 mt-2 text-center lg:text-left;
   }
 
   .menu-item {
-    @apply text-sm text-slate-400 mb-2 text-center;
+    @apply text-sm text-slate-400 mb-2 text-center lg:text-left;
 
     a {
       @apply text-slate-900;
@@ -91,7 +91,13 @@ footer
     }
   }
 
+  .logo-link {
+    @apply mx-auto text-center;
+  }
+
   .main {
+    @apply text-center flex flex-col items-center lg:items-start;
+    
     img {
       @apply w-32;
     }

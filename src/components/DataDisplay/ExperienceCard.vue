@@ -46,11 +46,8 @@ defineProps({
       p {{ company }}
       span @ {{ role }}
     .tags
-      Tag(
-        v-for="(tag, i) in tags"
-        :key="i"
-        :type="tag.type"
-      ) {{ tag.label }}
+      .tag-cont(v-for="(tag, i) in tags" :key="i")
+        Tag(:type="tag.type") {{ tag.label }}
   .summary
     p {{ summary }}
   .bottom
@@ -72,19 +69,27 @@ defineProps({
     }
 
     .title {
-      @apply flex-auto flex items-center;
+      @apply flex-auto;
+
+      @screen lg {
+        @apply flex items-center;
+      }
 
       p {
         @apply text-teal-900 font-medium;
       }
 
       span {
-        @apply text-slate-500 ml-1;
+        @apply text-slate-500 lg:ml-1;
       }
     }
 
     .tags {
-      @apply flex-none flex items-center;
+      @apply flex-none grid gap-1 text-right;
+
+      @screen md {
+        @apply flex items-center;
+      }
 
       .tag {
         @apply mr-1;
