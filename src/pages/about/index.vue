@@ -7,9 +7,11 @@ import { useApi } from '~/composables/api'
 // import skills pinia store
 import { useSkillsStore } from '~/stores/skills'
 import { useExperienceStore } from '~/stores/experience'
+import { useTestimoniesStore } from '~/stores/testimonies'
 
 const skillsStore = useSkillsStore()
 const experienceStore = useExperienceStore()
+const testimoniesStore = useTestimoniesStore()
 
 const { getCaseStudies, loading } = useApi()
 
@@ -140,7 +142,10 @@ onMounted(() => {
     .loading(v-if="loading")
       p Loading case studies...
     div(v-else-if="!loading && experienceStore.caseStudies")
-      .case-study(v-for="(caseStudy, i) in experienceStore.caseStudies" :key="i")
+      .case-study(
+        v-for="(caseStudy, i) in experienceStore.caseStudies.slice(0, 3)"
+        :key="i"
+      )
         CaseStudySummary(:case-study="caseStudy")
   .usual-apps
     .container-4
@@ -157,7 +162,7 @@ onMounted(() => {
         title="What People are Saying..."
         subtitle="Some honest testimonials from people I’ve worked with"
       )
-      TestimonySlider
+      TestimonySlider(:testimonies="testimoniesStore.testimonies")
 </template>
 
 <style lang="scss" scoped>

@@ -47,20 +47,31 @@ const bgStyles = computed(() => {
 <template lang="pug">
 .case-study-summary(:style="bgStyles")
   .container-small
-    p.subtitle(:style="{ color: caseStudy.subtitleColor }") {{ caseStudy.subtitle }}
+    img.logo(:src="setImage(caseStudy.logo)" alt="JP Casabianca")
     p.title(:style="{ color: caseStudy.titleColor }") {{ caseStudy.title }}
     span.summary(:style="{ color: caseStudy.summaryColor }") {{ caseStudy.summary }}
-  .container-large
+  .container-medium.imgs
     img(
       v-if="caseStudy.image"
       :src="setImage(caseStudy.image)"
       :alt="`${caseStudy.title} - JP Casabianca`"
+      class="from-tablet"
+    )
+    img(
+      v-if="caseStudy.mobile_image"
+      :src="setImage(caseStudy.mobile_image)"
+      :alt="`${caseStudy.title} - JP Casabianca`"
+      class="mobile"
     )
     slot(v-else)
   .container-medium
     InfoTabs(:items="moreItems" :bar-color="caseStudy.benefitColor")
   .cta
-    Button(:type="caseStudy.button" size="md") Read Case Study
+    Button(
+      :type="caseStudy.button"
+      :link="caseStudy.seo_slug "
+      size="md"
+    ) Read Case Study
 </template>
 
 <style lang="scss" scoped>
@@ -69,6 +80,10 @@ const bgStyles = computed(() => {
   
   .container-small {
     @apply text-center;
+
+    .logo {
+      @apply w-32 mx-auto mb-4;
+    }
 
     .subtitle {
       @apply font-medium text-teal-500 mb-4;
@@ -83,12 +98,22 @@ const bgStyles = computed(() => {
     }
   }
 
+  .imgs {
+    .mobile {
+      @apply md:hidden;
+    }
+
+    .from-tablet {
+      @apply hidden md:block;
+    }
+  }
+
   .container-medium {
-    @apply mt-8;
+    @apply mt-12;
   }
 
   .cta {
-    @apply text-center mt-8;
+    @apply text-center mt-12;
   }
 }
 </style>

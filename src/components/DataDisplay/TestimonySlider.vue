@@ -1,51 +1,70 @@
 <script setup>
-defineProps({
-  testimony: {
-    type: String,
-    default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-  },
-  person: {
-    type: String,
-    default: 'Hugo Plazas'
-  },
-  company: {
-    type: String,
-    default: 'Cartkit'
-  },
-  role: {
-    type: String,
-    default: 'Senior Product Designer'
-  },
-  rating: {
-    type: Number,
-    default: 5
-  },
-  image: {
-    type: String,
-    default: '/img/user.png'
+const props = defineProps({
+  testimonies: {
+    type: Array,
+    required: true,
   }
 })
+
+const index = ref(0)
+
+const testimony = computed(() => props.testimonies[index.value])
+
+const next = () => {
+  if (index.value < props.testimonies.length - 1) {
+    index.value++
+  } else {
+    index.value = 0
+  }
+}
+
+const prev = () => {
+  if (index.value > 0) {
+    index.value--
+  } else {
+    index.value = props.testimonies.length - 1
+  }
+}
 </script>
 
 <template lang="pug">
 .testimony-slider
   .testimony-left
     img(src="/img/stars.png" alt="Review Stars")
-    p.testimony {{ testimony }}
+    p.testimony {{ testimony.testimony }}
     .who
       .line
-      p {{ person }}
+      p {{ testimony.person }}
     .job
-      p {{ role }}
-      span @ {{ company }}
-  .testimony-right(:style="{ backgroundImage: `url(${image})` }")
+      p {{ testimony.role }}
+      span @ {{ testimony.company }}
+    .options
+      .dots
+        .dot(
+          v-for="(t, i) in testimonies"
+          :key="i"
+          :class="{ active: i == index }"
+          @click="index = i"
+        )
+      .arrows
+        .arrow.left(@click="prev()")
+          i.uil.uil-arrow-left
+        .arrow.right(@click="next()")
+          i.uil.uil-arrow-right
+  .testimony-right(:style="{ backgroundImage: `url(${testimony.image})` }")
   .img
-    img(:src="image" alt="Testimony Image")
+    img(:src="testimony.image" alt="Testimony Image")
 </template>
 
 <style lang="scss" scoped>
 .testimony-slider {
   @apply flex flex-col bg-slate-100 rounded;
+
+  .testimony-left {
+    img {
+      @apply w-32;
+    }
+  }
 
   .testimony-right {
     @apply hidden;
@@ -53,6 +72,43 @@ defineProps({
 
   .img {
     @apply flex mt-6 md:hidden;
+  }
+
+  .options {
+    @apply flex justify-between items-center mt-4;
+
+    .dots {
+      @apply flex;
+
+      .dot {
+        @apply w-2 h-2 rounded-full bg-slate-300 mr-2 cursor-pointer;
+
+        &:hover {
+          @apply bg-slate-600;
+        }
+
+        &.active {
+          @apply bg-slate-600;
+        }
+      }
+    }
+
+    .arrows {
+      @apply flex;
+
+      .arrow {
+        @apply w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          @apply bg-slate-300;
+        }
+
+        &.right {
+          @apply ml-2;
+        }
+      }
+    }
   }
 
   .testimony-left {
@@ -92,15 +148,17 @@ defineProps({
     @apply flex-row;
 
     .testimony-left {
-      @apply flex-auto;
-
-      img {
-        @apply w-32;
-      }
+      @apply flex-auto;      
     }
 
     .testimony-right {
-      @apply flex flex-none w-64 bg-cover bg-center rounded-r;
+      @apply flex flex-none w-64 bg-cover bg-center rounded-r;      
+    }
+  }
+
+  @screen lg {
+    .testimony-right {
+      @apply w-72;
     }
   }
 }

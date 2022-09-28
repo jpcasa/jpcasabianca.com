@@ -35,7 +35,7 @@ onMounted(() => {
     .info-tab-section(
       v-for="(i, j) in items"
       :key="j"
-      :style="{ backgroundColor: j == highlight ? barColor : '#F1F5F9' }"
+      :style="{ backgroundColor: j == highlight ? barColor : '#0000001F' }"
     )
   .info-grid(:style="gridColumns")
     .text-container(v-for="(item, i) in items" :key="i")
@@ -46,7 +46,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .info-tab-bar {
-  @apply grid bg-slate-100 rounded-full mb-6;
+  @apply grid rounded-full mb-6;
   height: 5px;
 
   .info-tab-section {

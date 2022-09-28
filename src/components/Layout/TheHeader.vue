@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template lang="pug">
-header(:class="[headerMod, { 'with-bg': withBg }]")
+header(:class="[headerMode, { 'with-bg': withBg }]")
   .container
     .left
       router-link(to="/")

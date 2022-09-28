@@ -2,11 +2,7 @@
 const route = useRoute()
 
 const headerMode = computed(() => {
-  if (route.path == '/') {
-    return 'light'
-  } else {
-    return 'dark'
-  }
+  return route.path == '/' ? 'light' : 'dark'
 })
 </script>
 
@@ -14,6 +10,7 @@ const headerMode = computed(() => {
 div
   TheHeader(:mode="headerMode")
   router-view
+  TheFooter(v-if="headerMode == 'dark'")
 </template>
 
 <style lang="scss" scoped></style>

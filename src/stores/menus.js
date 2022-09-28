@@ -35,8 +35,56 @@ export const useMenusStore = defineStore({
         local: true,
       }
     ],
+    secondaryMenu: [
+      {
+        name: 'Home',
+        link: '/about',
+        local: true,
+      },      
+      {
+        name: 'Instagram',
+        link: 'https://www.instagram.com/jpcasabiancai/',
+        local: false,
+      },
+      {
+        name: 'Linkedin',
+        link: 'https://www.linkedin.com/in/juan-pablo-casabianca/',
+        local: false,
+      },
+      {
+        name: 'Github',
+        link: 'https://github.com/jpcasa',
+        local: false,
+      },
+    ],
+    moreMenu: [
+      {
+        name: 'CV',
+        link: '/cv',
+        local: true,
+      },
+      {
+        name: 'Privacy Policy',
+        link: '/privacy-policy',
+        local: true,
+      },
+      {
+        name: 'Email Me',
+        link: 'mailto:hola@jpcasabianca.com',
+        local: false,
+      },
+      {
+        name: 'WhatsApp',
+        link: 'https://wa.me/573028608427',
+        local: false,
+      },
+    ]
   }),
   getters: {
-    menus: (state) => [...state.mainMenu],
+    allMenus: (state) => [
+      { title: 'Main Menu', items: state.mainMenu },
+      { title: 'Social', items: state.secondaryMenu },
+      { title: 'More', items: state.moreMenu },
+    ],
   },
 })

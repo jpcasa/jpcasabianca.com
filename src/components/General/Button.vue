@@ -91,4 +91,23 @@ button.purple {
   @apply text-white;
   background-color: #7F56D9;
 }
+
+button.blue {
+  @apply text-white;
+  background-color: #3A87F7;
+
+  &:hover {
+    background-color: #1C5BB6;
+  }
+}
+
+button.pink {
+  background-color: #F3C8DF;
+  color: #952E65;
+}
+
+button.salespop {
+  background-color: #6563FF;
+  color: #fff;
+}
 </style>

@@ -11,7 +11,7 @@
 
 <style lang="scss" scoped>
 .page-header {
-  @apply py-32 -mb-12 bg-teal-800;
+  @apply pt-24 pb-32 -mb-16 bg-teal-800;
 
   .container {
     @apply flex items-center justify-between;
