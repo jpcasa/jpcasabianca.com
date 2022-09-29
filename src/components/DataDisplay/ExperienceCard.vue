@@ -49,7 +49,9 @@ defineProps({
       .tag-cont(v-for="(tag, i) in tags" :key="i")
         Tag(:type="tag.type") {{ tag.label }}
   .summary
-    p {{ summary }}
+    p 
+      | {{ summary }}
+      span Read More
   .bottom
     .bottom-item
       i.uil.uil-location-point
@@ -106,6 +108,14 @@ defineProps({
     
     p {
       @apply text-slate-500;
+
+      span {
+        @apply ml-1 text-slate-800 underline font-medium cursor-pointer;
+
+        &:hover {
+          @apply text-teal-600;
+        }
+      }
     }
   }
 

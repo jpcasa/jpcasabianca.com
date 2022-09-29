@@ -15,6 +15,8 @@ export function setupApi() {
 */
 export function useApi() {
   const loading = ref(false)
+  const loadingSkills = ref(false)
+
   const { axiosClient } = setupApi()
 
   const getCaseStudies = async () => {
@@ -56,5 +58,18 @@ export function useApi() {
     }
   }
 
-  return { getCaseStudies, getResources, createResource, loading }
+  const getSkills = async () => {
+    loadingSkills.value = true
+    try {
+      const { data } = await axiosClient.get('/skills')
+      loadingSkills.value = false
+      return [null, data]
+    } catch (error) {
+      console.error(error)
+      loadingSkills.value = false
+      return [error]
+    }
+  }
+
+  return { getCaseStudies, getResources, createResource, getSkills, loading, loadingSkills }
 }

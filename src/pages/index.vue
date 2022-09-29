@@ -1,4 +1,8 @@
 <script setup>
+import { useMetas } from '~/composables/metas'
+
+const { setMetaTitle, metas } = useMetas()
+
 const arr = [
   'I create awesome digital experiences.',
   'I design prototypes in Figma.',
@@ -7,6 +11,9 @@ const arr = [
   'I own a Sports Apparel Brand.',
   'I play Zelda and PS4.'
 ]
+
+setMetaTitle('Home')
+useHead(metas)
 </script>
 
 <template lang="pug">
@@ -18,7 +25,11 @@ const arr = [
           | Hey, I’m JP. An experienced UI/UX Designer and Engineer.
           span
             VueWriter(:array="arr" :typeSpeed="70")
-        p.copy I know how to design and code, so I really bring value to product teams. I love new challenges and gravel cycling! Most recently leading product over at Cartkit - Amplified.    
+        p.copy 
+          | I can build full prototypes in Figma/Framer designed from scratch. Also, I can code them in Vue3/React and Vite.js, so I really bring value to product teams. I love new challenges and gravel cycling! Most recently leading product over at
+          a(href="https://www.cartkit.com/" target="_blank") Cartkit
+          | and founded
+          a(href="https://www.casabianca.cc" target="_blank") Casabianca.cc Cycling Apparel.
         Button(size="md" link="/about") Learn More About Me
     .img
       img(src="/img/home@2x.png" alt="Home JP Casabianca")
@@ -58,6 +69,10 @@ const arr = [
 
     .copy {
       @apply my-8 text-slate-500;
+
+      a {
+        @apply mx-1 text-slate-700 underline hover:text-teal-600;
+      }
     }
   }
 }

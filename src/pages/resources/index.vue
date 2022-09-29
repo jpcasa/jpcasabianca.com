@@ -2,10 +2,17 @@
 import { NSelect } from 'naive-ui'
 
 import { useApi } from '~/composables/api'
+import { useMetas } from '~/composables/metas'
+
 import { useResourcesStore } from '~/stores/resources'
 
-const resourcesStore = useResourcesStore()
 const { getResources, loading } = useApi()
+const { setMetaTitle, metas } = useMetas()
+
+const resourcesStore = useResourcesStore()
+
+setMetaTitle('Resources')
+useHead(metas)
 
 const loadResources = async () => {
   const [error, response] = await getResources()

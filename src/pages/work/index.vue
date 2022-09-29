@@ -1,9 +1,16 @@
 <script setup>
 import { useApi } from '~/composables/api'
+import { useMetas } from '~/composables/metas'
+
 import { useExperienceStore } from '~/stores/experience'
 
-const experienceStore = useExperienceStore()
 const { getCaseStudies, loading } = useApi()
+const { setMetaTitle, metas } = useMetas()
+
+const experienceStore = useExperienceStore()
+
+setMetaTitle('Work')
+useHead(metas)
 
 const loadCaseStudies = async () => {
   const [error, response] = await getCaseStudies()

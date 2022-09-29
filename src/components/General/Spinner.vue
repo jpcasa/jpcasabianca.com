@@ -1,21 +1,32 @@
 <script setup>
-defineProps({
+const props = defineProps({
   fullScreen: {
     type: Boolean,
     default: true
-  }
+  },
+  height: {
+    type: String,
+    default: 'h-64'
+  },
+})
+
+const contHeight = computed(() => {
+  if (props.fullScreen) return 'h-screen'
+  return props.height
 })
 </script>
 
 <template lang="pug">
-.spinner(:class="{ 'full-screen': fullScreen }")
+.spinner(:class="[contHeight, { 'full-screen': fullScreen }]")
   span.loader
 </template>
 
 <style lang="scss" scoped>
 .spinner {
+  @apply flex items-center justify-center;
+  
   &.full-screen {
-    @apply fixed inset-0 flex items-center justify-center bg-white z-50;
+    @apply fixed inset-0 bg-white z-50 w-full h-full;
   }
 }
 

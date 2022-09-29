@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import { createHead } from '@vueuse/head'
+import VueSecureHTML from 'vue-html-secure'
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
@@ -11,6 +13,9 @@ import '~/assets/main.scss'
 
 import App from './App.vue'
 
+// META
+const head = createHead()
+
 // ROUTES
 const routes = setupLayouts(generatedRoutes)
 const router = createRouter({ history: createWebHistory(), routes })
@@ -19,6 +24,6 @@ const router = createRouter({ history: createWebHistory(), routes })
 const pinia = createPinia()
 
 // DEFINE APP
-const app = createApp(App).use(router).use(pinia).use(VueWriter)
+const app = createApp(App).use(router).use(head).use(pinia).use(VueWriter).use(VueSecureHTML)
 
 app.mount('#app')

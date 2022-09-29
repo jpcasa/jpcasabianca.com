@@ -2,6 +2,7 @@
 import { NDatePicker } from 'naive-ui'
 
 // import api composable
+import { useMetas } from '~/composables/metas'
 import { useApi } from '~/composables/api'
 
 // import skills pinia store
@@ -13,10 +14,22 @@ const skillsStore = useSkillsStore()
 const experienceStore = useExperienceStore()
 const testimoniesStore = useTestimoniesStore()
 
-const { getCaseStudies, loading } = useApi()
+const { getCaseStudies, getSkills, loading, loadingSkills } = useApi()
+const { setMetaTitle, metas } = useMetas()
 
 const { skillActive } = storeToRefs(skillsStore)
 
+setMetaTitle('About')
+useHead(metas)
+
+const arr = [
+  'I create awesome digital experiences.',
+  'I design prototypes in Figma.',
+  'I use Vue 3 and Github Copilot to get shit done.',
+  'I love Gravel and Road Cycling.',
+  'I own a Sports Apparel Brand.',
+  'I play Zelda and PS4.'
+]
 const tags = [
   { label: 'Design', value: 'design', type: 'blue' },
   { label: 'Frontend', value: 'frontend', type: 'green' },
@@ -40,8 +53,22 @@ const loadCaseStudies = async () => {
   experienceStore.setCaseStudies(response.data)
 }
 
-onMounted(() => {
+const loadSkills = async () => {
+  const [error, response] = await getSkills()
+  if (error) {
+    console.log(error)
+    return
+  }
+  skillsStore.setSoftSkills(response.data)
+}
+
+const loadData = () => {
   loadCaseStudies()
+  loadSkills()
+}
+
+onMounted(() => {
+  loadData()
 })
 </script>
 
@@ -50,8 +77,15 @@ onMounted(() => {
   .about-header
     .container
       .left
-        h1 Hey there, I'm a senior designer and developer. I love building cool shit and having some beers.
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas maecenas pharetra. Penatibus et magnis dis parturient.
+        h1
+          | Hey, I’m JP. An experienced UI/UX Designer and Engineer.
+          span
+            VueWriter(:array="arr" :typeSpeed="70")
+        p.copy 
+          | I can build full prototypes in Figma/Framer designed from scratch. Also, I can code them in Vue3/React and Vite.js, so I really bring value to product teams. I love new challenges and gravel cycling! Most recently leading product over at
+          a(href="https://www.cartkit.com/" target="_blank") Cartkit
+          | and founded
+          a(href="https://www.casabianca.cc" target="_blank") Casabianca.cc Cycling Apparel.
         Button(type="primary" size="md") Let's Connect
       .right
         img(src="/img/about@2x.png" alt="JP Casabianca")
@@ -60,7 +94,7 @@ onMounted(() => {
       img(src="/img/logos.png" alt="JP Casabianca - Apps")
     .skills
       .container-small
-        TextSection(padding="pt-0 pb-4")
+        TextSection(padding="pt-0 pb-4" description="You can find out what tools, apps, and services I use in my day-to-day work and life. Find design, frontend, backend, and marketing skills.")
         .tabs-parent
           Tabs(
             :tabs="skillsStore.skills"
@@ -73,23 +107,29 @@ onMounted(() => {
             :datasets="skillsStore.activeSkills.items"
           )
         Card(padding="p-8")
-          .soft-skills
+          .soft-empty(v-if="loadingSkills")
+            .loading
+              Spinner(:full-screen="false")
+          .soft-skills(v-else-if="!loadingSkills && skillsStore.softSkills")
             .chart-left
               RadarChart(:chart-data="skillsStore.chartData")
             .chart-right
-              p {{ skillsStore.activeSoftSkill.name }}
-              span {{ skillsStore.activeSoftSkill.description }}
+              p.title {{ skillsStore.activeSoftSkill.name }}
+              .description(v-html-safe="skillsStore.activeSoftSkill.description")
               .options
                 .option
                   i.uil.uil-arrow-left(@click="skillsStore.changeSoftSkillsIndex('prev')")
                 .option
                   i.uil.uil-arrow-right(@click="skillsStore.changeSoftSkillsIndex('next')")
+          .soft-skills-error(v-else)
+            p No Soft Skills Found
   .experience
     .container-medium
       .experience-left
         TextSection(
           title="My Experience"
           subtitle="The companies I’ve worked with"
+          description="You can find out what experiences I’ve had in my career. I’ve worked with a lot of companies and startups as a designer, developer, and adevisor. I’ve also been a product manager and a business owner. Feel free to filter by subject below:"
           padding="p-0"
           text-align="text-left"
         )
@@ -270,10 +310,18 @@ onMounted(() => {
     @screen xl {
       @apply mt-12;
     }
+
+    span {
+      @apply text-teal-500 underline;
+    } 
   }
 
   p {
     @apply text-gray-300 mt-6 mb-8;
+
+    a {
+      @apply mx-1 text-white underline;
+    }
   }
 
   .container {
@@ -332,8 +380,14 @@ onMounted(() => {
   }
 
   .chart-right {
-    p {
+    @apply text-slate-500;
+    
+    p.title {
       @apply font-medium mb-4 text-lg text-teal-900;
+    }
+
+    p {
+      @apply mb-4 block;
     }
 
     span {

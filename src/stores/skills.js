@@ -4,48 +4,7 @@ export const useSkillsStore = defineStore({
   id: 'skills',
   state: () => ({
     softSkillsIndex: 0,
-    softSkills: [
-      {
-        name: 'Problem-solving',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 8,
-      },
-      {
-        name: 'Communication skills',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 9,
-      },
-      {
-        name: 'Time management',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 10,
-      },
-      {
-        name: 'Interpersonal skills',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 9,
-      },
-      {
-        name: 'Self-awareness',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 8,
-      },
-      {
-        name: 'Self-learning',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 10,
-      },
-      {
-        name: 'Accountability',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 10,
-      },
-      {
-        name: 'Emotional Intelligence',
-        description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod voluptatum. Quisquam, quod voluptatum.',
-        level: 9,
-      },
-    ],
+    softSkills: null,
     skillActive: 'design',
     skills: [
       {
@@ -161,6 +120,9 @@ export const useSkillsStore = defineStore({
           this.softSkillsIndex = this.softSkills.length - 1
         }
       }
+    },
+    setSoftSkills(skills) {
+      this.softSkills = skills
     }
   }
 })

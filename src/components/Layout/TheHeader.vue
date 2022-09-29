@@ -34,7 +34,6 @@ const handleScroll = event => {
 }
 
 const linkActive = link => {
-  console.log(route.path.split('/')[1])
   return link == `/${route.path.split('/')[1]}`
 }
 
