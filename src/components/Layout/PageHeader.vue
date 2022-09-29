@@ -18,7 +18,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .page-header {
-  @apply pt-28 pb-36 -mb-16 bg-teal-800;
+  @apply pt-28 pb-40 -mb-24 bg-teal-800;
 
   .container {
     @apply flex items-center justify-between;

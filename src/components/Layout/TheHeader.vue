@@ -11,6 +11,8 @@ const props = defineProps({
   }
 })
 
+const route = useRoute()
+
 const windowScroll = ref(0)
 
 const headerMode = ref(props.mode)
@@ -31,6 +33,11 @@ const handleScroll = event => {
   }
 }
 
+const linkActive = link => {
+  console.log(route.path.split('/')[1])
+  return link == `/${route.path.split('/')[1]}`
+}
+
 onBeforeMount(() => {
   window.addEventListener('scroll', handleScroll)
 })
@@ -49,16 +56,30 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
     .center
       nav
         .nav-item(v-for="(item, i) in menusStore.mainMenu" :key="i")
-          router-link(v-if="item.local" :to="item.link") {{ item.name }}
+          router-link(
+            v-if="item.local"
+            :to="item.link"
+            :class="{ active: linkActive(item.link) }"
+          ) {{ item.name }}
           a(v-if="!item.local" :href="item.link" target="_blank") {{ item.name }}
     .right
-      Button(:type="buttonTypes[0]") CV
       Button(:type="buttonTypes[1]") Let's Connect
 .mobile-nav-bottom
-  .mobile-nav-item(v-for="(item, i) in menusStore.mainMenu" :key="i")
+  router-link.mobile-nav-item(
+    v-for="(item, i) in menusStore.mobileMenus[0]"
+    :to="item.link"
+    :key="i"
+  )
     i.uil(:class="item.icon")
-    router-link(v-if="item.local" :to="item.link") {{ item.name }}
-    a(v-if="!item.local" :href="item.link" target="_blank") {{ item.name }}
+    span {{ item.name }}
+  a.mobile-nav-item(
+    v-for="(item, i) in menusStore.mobileMenus[1]"
+    :href="item.link"
+    :key="i"
+    target="_blank"
+  )
+    i.uil(:class="item.icon")
+    span {{ item.name }}
 </template>
 
 <style lang="scss" scoped>
@@ -120,7 +141,8 @@ header {
       }
     }
 
-    a.router-link-exact-active {
+    a.router-link-exact-active,
+    a.active {
       @apply text-teal-600 underline;
     }
   }
@@ -132,7 +154,8 @@ header.dark {
       @apply text-white;
     }
 
-    a.router-link-exact-active {
+    a.router-link-exact-active,
+    a.active  {
       @apply text-teal-500 underline;
     }
   }
@@ -160,7 +183,7 @@ header.with-bg {
   .mobile-nav-item {
     @apply text-center text-white flex flex-col h-full justify-center;
 
-    a {
+    span {
       @apply text-xs;
     }
 
@@ -172,6 +195,10 @@ header.with-bg {
     &:hover {
       @apply bg-teal-500;
     }
+  }
+
+  a.router-link-exact-active {
+    @apply bg-teal-500;
   }
 }
 </style>

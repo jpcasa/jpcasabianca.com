@@ -76,6 +76,8 @@ onMounted(() => {
 }
 
 .info-tabs-mobile {
+  @apply md:hidden;
+  
   .tab-mobile {
     @apply flex;
 

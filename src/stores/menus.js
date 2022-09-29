@@ -3,6 +3,37 @@ import { defineStore } from 'pinia'
 export const useMenusStore = defineStore({
   id: 'menus',
   state: () => ({
+    mobileMenus: [
+      [
+        {
+          name: 'About Me',
+          link: '/about',
+          icon: 'uil-user',
+        },
+        {
+          name: 'Work' ,
+          link: '/work',
+          icon: 'uil-briefcase-alt',
+        },
+        {
+          name: 'Resources',
+          link: '/resources',
+          icon: 'uil-cloud-computing',
+        }
+      ],
+      [
+        {
+          name: 'Play',
+          link: 'https://www.instagram.com/jpcasabiancai/',
+          icon: 'uil-instagram',
+        },
+        {
+          name: 'Blog',
+          link: 'https://medium.com/@jpc_774',
+          icon: 'uil-book-alt',
+        }
+      ]
+    ],
     mainMenu: [
       {
         name: 'About Me',
