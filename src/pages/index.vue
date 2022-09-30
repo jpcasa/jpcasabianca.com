@@ -32,7 +32,7 @@ useHead(metas)
           a(href="https://www.casabianca.cc" target="_blank") Casabianca.cc Cycling Apparel.
         Button(size="md" link="/about") Learn More About Me
     .img
-      img(src="/img/home@2x.png" alt="Home JP Casabianca")
+      img(src="/img/home.webp" alt="Home JP Casabianca")
 </template>
 
 <style lang="scss" scoped>
