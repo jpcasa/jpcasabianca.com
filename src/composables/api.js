@@ -20,6 +20,8 @@ export function useApi() {
 
   const { axiosClient } = setupApi()
 
+  const getCaseStudiesSync = () =>  axiosClient.get('/Case_Studies')
+
   const getCaseStudies = async () => {
     loading.value = true
     try {
@@ -86,6 +88,7 @@ export function useApi() {
   }
 
   return {
+    getCaseStudiesSync,
     getCaseStudies,
     getResources,
     createResource,

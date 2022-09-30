@@ -2,6 +2,7 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import generateSitemap from 'vite-ssg-sitemap'
 import Layouts from 'vite-plugin-vue-layouts'
 import WindiCSS from 'vite-plugin-windicss'
 import Pages from 'vite-plugin-pages'
@@ -35,5 +36,20 @@ export default defineConfig({
 			],
 			dts: true,
 		}),
-  ]
+  ],
+	ssgOptions: {
+    onFinished() {
+			generateSitemap({
+				dynamicRoutes: [
+					'/work/casabianca-cycling',
+					'/work/frida-real-estate-assistant',
+					'/work/hi-there',
+					'/work/amplified',
+					'/work/printa-delivery',
+					'/work/codesign-studio',
+					'/work/salespop'
+				]
+			})
+		},
+  },
 })
