@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+import { useMetas } from '~/composables/metas'
+
+const { setMetaTitle, metas } = useMetas()
+
+setMetaTitle('This is the title of the case study')
+useHead(metas)
+</script>
 
 <template lang="pug">
 .case-study

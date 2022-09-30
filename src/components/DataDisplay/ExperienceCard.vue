@@ -22,10 +22,7 @@ defineProps({
   },
   tags: {
     type: Array,
-    default: [
-      { label: 'Design', type: 'blue' },
-      { label: 'Frontend', type: 'purple' }
-    ]
+    default: ['Design', 'Frontend']
   },
   summary: {
     type: String,
@@ -47,7 +44,7 @@ defineProps({
       span @ {{ role }}
     .tags
       .tag-cont(v-for="(tag, i) in tags" :key="i")
-        Tag(:type="tag.type") {{ tag.label }}
+        Tag(randomize-type) {{ tag }}
   .summary
     p 
       | {{ summary }}

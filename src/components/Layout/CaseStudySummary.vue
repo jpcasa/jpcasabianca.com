@@ -46,9 +46,7 @@ const moreItems = computed(() => {
   ]
 })
 
-const setImage = id => {
-  return `${import.meta.env.VITE_ASSETS_URL}/${id}.png`
-}
+const setImage = id => `${import.meta.env.VITE_ASSETS_URL}/${id}.png`
 
 const bgStyles = computed(() => {
   return {
@@ -61,19 +59,19 @@ const bgStyles = computed(() => {
 <template lang="pug">
 .case-study-summary(:style="bgStyles")
   .container-small
-    img.logo(:src="setImage(caseStudy.logo)" alt="JP Casabianca")
+    img.logo(:src="$filters.image(caseStudy.logo)" alt="JP Casabianca")
     p.title(:style="{ color: caseStudy.titleColor }") {{ caseStudy.title }}
     span.summary(:style="{ color: caseStudy.summaryColor }") {{ caseStudy.summary }}
   .container-medium.imgs
     img(
       v-if="caseStudy.image"
-      :src="setImage(caseStudy.image)"
+      :src="$filters.image(caseStudy.image)"
       :alt="`${caseStudy.title} - JP Casabianca`"
       class="from-tablet"
     )
     img(
       v-if="caseStudy.mobile_image"
-      :src="setImage(caseStudy.mobile_image)"
+      :src="$filters.image(caseStudy.mobile_image)"
       :alt="`${caseStudy.title} - JP Casabianca`"
       class="mobile"
     )

@@ -23,10 +23,6 @@ const loadResources = async () => {
   resourcesStore.setResources(response.data)
 }
 
-const setImage = id => {
-  return `${import.meta.env.VITE_ASSETS_URL}/${id}.png`
-}
-
 onMounted(() => {
   loadResources()
 })
@@ -66,7 +62,7 @@ onMounted(() => {
       )
         .resource-cont
           img.icon(
-            :src="setImage(item.icon)"
+            :src="$filters.image(item.icon)"
             :alt="item.name"
             :class="{ horizontal: item.horizontal }"
           )

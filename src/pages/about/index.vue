@@ -14,7 +14,14 @@ const skillsStore = useSkillsStore()
 const experienceStore = useExperienceStore()
 const testimoniesStore = useTestimoniesStore()
 
-const { getCaseStudies, getSkills, loading, loadingSkills } = useApi()
+const {
+  getCaseStudies,
+  getSkills,
+  getExperience,
+  loading,
+  loadingSkills,
+  loadingExperience
+} = useApi()
 const { setMetaTitle, metas } = useMetas()
 
 const { skillActive } = storeToRefs(skillsStore)
@@ -46,25 +53,26 @@ const setSkillTab = tab => skillActive.value = tab
 
 const loadCaseStudies = async () => {
   const [error, response] = await getCaseStudies()
-  if (error) {
-    console.log(error)
-    return
-  }
+  if (error) return
   experienceStore.setCaseStudies(response.data)
 }
 
 const loadSkills = async () => {
   const [error, response] = await getSkills()
-  if (error) {
-    console.log(error)
-    return
-  }
+  if (error) return
   skillsStore.setSoftSkills(response.data)
+}
+
+const loadExperience = async () => {
+  const [error, response] = await getExperience()
+  if (error) return
+  experienceStore.setExperience(response.data)
 }
 
 const loadData = () => {
   loadCaseStudies()
   loadSkills()
+  loadExperience()
 }
 
 onMounted(() => {
@@ -150,34 +158,35 @@ onMounted(() => {
         .filters-active(v-if="experienceStore.subjectFiltersString")
           span Filtered by:
           p {{ experienceStore.subjectFiltersString }}
-        .experience-row(
-          v-for="(exp, i) in experienceStore.experiences"
-          :key="i"
-        )
-          ExperienceCard(
-            :company="exp.company"
-            :logo="exp.logo"
-            :role="exp.role"
-            :startDate="exp.startDate"
-            :endDate="exp.endDate"
-            :tags="exp.tags"
-            :summary="exp.summary"
-            :location="exp.location"
+        .experiences(v-if="experienceStore.experience")
+          .experience-row(
+            v-for="(exp, i) in experienceStore.experiences"
+            :key="i"
           )
-        .pagination-parent(v-if="!experienceStore.subjectFilters.length")
-          Pagination(
-            :page="experienceStore.page"
-            :page-count="experienceStore.pages"
-            @page-change="experienceStore.changePage"
-          )
-        .pagination-clear(v-else)
-          Button(
-            type="minimal"
-            size="md"
-            @click="experienceStore.clearFilters()"
-          )
-            span Clear Filters
-            i.uil.uil-times
+            ExperienceCard(
+              :company="exp.company"
+              :logo="$filters.image(exp.logo)"
+              :role="exp.role"
+              :startDate="exp.startDate"
+              :endDate="exp.endDate"
+              :tags="exp.tags"
+              :summary="exp.summary"
+              :location="exp.location"
+            )
+          .pagination-parent(v-if="!experienceStore.subjectFilters.length")
+            Pagination(
+              :page="experienceStore.page"
+              :page-count="experienceStore.pages"
+              @page-change="experienceStore.changePage"
+            )
+          .pagination-clear(v-else)
+            Button(
+              type="minimal"
+              size="md"
+              @click="experienceStore.clearFilters()"
+            )
+              span Clear Filters
+              i.uil.uil-times
   .case-studies
     .loading(v-if="loading")
       p Loading case studies...

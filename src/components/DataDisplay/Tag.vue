@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   size: {
     type: String,
     default: 'sm'
@@ -15,17 +15,29 @@ defineProps({
   cursor: {
     type: Boolean,
     default: false
+  },
+  randomizeType: {
+    type: Boolean,
+    default: false
   }
 })
 
 const emit = defineEmits(['click'])
 
 const clicked = () => emit('click')
+
+const parsedType = computed(() => {
+  if (props.randomizeType) {
+    const types = ['green', 'blue', 'blue-dark', 'purple', 'pink', 'orange', 'red', 'yellow']
+    return types[Math.floor(Math.random() * types.length)]
+  }
+  return props.type
+})
 </script>
 
 <template lang="pug">
 .tag(
-  :class="[size, type, { border, 'cursor-pointer': cursor }]"
+  :class="[size, parsedType, { border, 'cursor-pointer': cursor }]"
   @click="clicked()"
 )
   slot

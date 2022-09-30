@@ -71,7 +71,7 @@ useHead(metas)
       @apply my-8 text-slate-500;
 
       a {
-        @apply mx-1 text-slate-700 underline hover:text-teal-600;
+        @apply mx-1 text-slate-900 font-medium hover:underline;
       }
     }
   }

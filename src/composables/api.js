@@ -16,6 +16,7 @@ export function setupApi() {
 export function useApi() {
   const loading = ref(false)
   const loadingSkills = ref(false)
+  const loadingExperience = ref(false)
 
   const { axiosClient } = setupApi()
 
@@ -71,5 +72,27 @@ export function useApi() {
     }
   }
 
-  return { getCaseStudies, getResources, createResource, getSkills, loading, loadingSkills }
+  const getExperience = async () => {
+    loadingExperience.value = true
+    try {
+      const { data } = await axiosClient.get('/experience')
+      loadingExperience.value = false
+      return [null, data]
+    } catch (error) {
+      console.error(error)
+      loadingExperience.value = false
+      return [error]
+    }
+  }
+
+  return {
+    getCaseStudies,
+    getResources,
+    createResource,
+    getSkills,
+    getExperience,
+    loading,
+    loadingSkills,
+    loadingExperience
+  }
 }
