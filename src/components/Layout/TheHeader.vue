@@ -69,7 +69,7 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
     :to="item.link"
     :key="i"
   )
-    i.uil(:class="item.icon")
+    component(:is="item.icon")
     span {{ item.name }}
   a.mobile-nav-item(
     v-for="(item, i) in menusStore.mobileMenus[1]"
@@ -77,7 +77,7 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
     :key="i"
     target="_blank"
   )
-    i.uil(:class="item.icon")
+    component(:is="item.icon")
     span {{ item.name }}
 </template>
 
@@ -180,15 +180,15 @@ header.with-bg {
   @apply grid-cols-5 h-12 items-center lg:hidden;
 
   .mobile-nav-item {
-    @apply text-center text-white flex flex-col h-full justify-center;
+    @apply text-center text-white flex flex-col h-full justify-center items-center;
 
     span {
       @apply text-xs;
+      margin-top: 2px;
     }
 
     i {
       @apply leading-none;
-      margin-bottom: 2px;
     }
 
     &:hover {

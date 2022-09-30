@@ -1,4 +1,8 @@
 <script setup>
+import IconArrowLeft from '~icons/uil/arrow-left'
+import IconArrowRight from '~icons/uil/arrow-right'
+import IconTimes from '~icons/uil/times'
+
 import { NDatePicker } from 'naive-ui'
 
 // import api composable
@@ -126,9 +130,15 @@ onMounted(() => {
               .description(v-html-safe="skillsStore.activeSoftSkill.description")
               .options
                 .option
-                  i.uil.uil-arrow-left(@click="skillsStore.changeSoftSkillsIndex('prev')")
+                  icon-arrow-left(
+                    class="text-xl text-slate-500"
+                    @click="skillsStore.changeSoftSkillsIndex('prev')"
+                  )
                 .option
-                  i.uil.uil-arrow-right(@click="skillsStore.changeSoftSkillsIndex('next')")
+                  icon-arrow-right(
+                    class="text-xl text-slate-500"
+                    @click="skillsStore.changeSoftSkillsIndex('next')"
+                  )
           .soft-skills-error(v-else)
             p No Soft Skills Found
   .experience
@@ -186,7 +196,7 @@ onMounted(() => {
               @click="experienceStore.clearFilters()"
             )
               span Clear Filters
-              i.uil.uil-times
+              icon-times
   .case-studies
     .loading(v-if="loading")
       p Loading case studies...

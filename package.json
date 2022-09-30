@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@iconscout/vue-unicons": "^0.0.3",
+    "@vue/compiler-sfc": "^3.2.40",
     "@vueuse/core": "^9.2.0",
     "@vueuse/head": "^0.7.12",
     "axios": "^0.27.2",
@@ -31,10 +32,12 @@
     "vue-writer": "^1.2.0"
   },
   "devDependencies": {
+    "@iconify/json": "^2.1.115",
     "@vitejs/plugin-vue": "^3.1.0",
     "naive-ui": "^2.33.3",
     "pug": "^3.0.2",
     "sass": "^1.55.0",
+    "unplugin-icons": "^0.14.11",
     "vite": "^3.1.0",
     "vite-plugin-windicss": "^1.8.8",
     "vite-ssg": "^0.20.2",

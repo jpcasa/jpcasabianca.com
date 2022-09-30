@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import generateSitemap from 'vite-ssg-sitemap'
 import Layouts from 'vite-plugin-vue-layouts'
 import WindiCSS from 'vite-plugin-windicss'
+import Icons from 'unplugin-icons/vite'
 import Pages from 'vite-plugin-pages'
 import vue from '@vitejs/plugin-vue'
 
@@ -25,6 +26,7 @@ export default defineConfig({
     Components(),
     Pages(),
     WindiCSS(),
+		Icons(),
     AutoImport({
 			imports: [
 				'vue',

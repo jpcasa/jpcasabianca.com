@@ -1,15 +1,18 @@
-<script setup></script>
+<script setup>
+import IconReceiptAlt from '~icons/uil/receipt-alt'
+import IconDownload from '~icons/uil/download-alt'
+</script>
 
 <template lang="pug">
 .resume
   p Resume
   .download
     .icon-square
-      i.uil.uil-receipt
+      icon-receipt-alt
     span jp-resume.pdf
   Button(type="dark")
     span Download
-    i.uil.uil-download-alt
+    icon-download
 </template>
 
 <style lang="scss" scoped>

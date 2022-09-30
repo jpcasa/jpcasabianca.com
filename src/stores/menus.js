@@ -1,5 +1,11 @@
 import { defineStore } from 'pinia'
 
+import IconUser from '~icons/uil/user'
+import IconBriefcaseAlt from '~icons/uil/briefcase-alt'
+import IconCloudComputing from '~icons/uil/cloud-computing'
+import IconInstagram from '~icons/uil/instagram'
+import IconBookAlt from '~icons/uil/book-alt'
+
 export const useMenusStore = defineStore({
   id: 'menus',
   state: () => ({
@@ -8,29 +14,29 @@ export const useMenusStore = defineStore({
         {
           name: 'About Me',
           link: '/about',
-          icon: 'uil-user',
+          icon: IconUser,
         },
         {
           name: 'Work' ,
           link: '/work',
-          icon: 'uil-briefcase-alt',
+          icon: IconBriefcaseAlt,
         },
         {
           name: 'Resources',
           link: '/resources',
-          icon: 'uil-cloud-computing',
+          icon: IconCloudComputing,
         }
       ],
       [
         {
           name: 'Play',
           link: 'https://www.instagram.com/jpcasabiancai/',
-          icon: 'uil-instagram',
+          icon: IconInstagram,
         },
         {
           name: 'Blog',
           link: 'https://medium.com/@jpc_774',
-          icon: 'uil-book-alt',
+          icon: IconBookAlt,
         }
       ]
     ],
@@ -38,31 +44,26 @@ export const useMenusStore = defineStore({
       {
         name: 'About Me',
         link: '/about',
-        icon: 'uil-user',
         local: true,
       },
       {
         name: 'Work' ,
         link: '/work',
-        icon: 'uil-briefcase-alt',
         local: true,
       },
       {
         name: 'Resources',
         link: '/resources',
-        icon: 'uil-cloud-computing',
         local: true,
       },
       {
         name: 'Play',
         link: 'https://www.instagram.com/jpcasabiancai/',
-        icon: 'uil-instagram',
         local: false,
       },
       {
         name: 'Blog',
         link: 'https://medium.com/@jpc_774',
-        icon: 'uil-book-alt',
         local: false,
       }
     ],

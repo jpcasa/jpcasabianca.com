@@ -1,4 +1,7 @@
 <script setup>
+import IconArrowLeft from '~icons/uil/arrow-left'
+import IconArrowRight from '~icons/uil/arrow-right'
+
 const props = defineProps({
   testimonies: {
     type: Array,
@@ -48,9 +51,9 @@ const prev = () => {
         )
       .arrows
         .arrow.left(@click="prev()")
-          i.uil.uil-arrow-left
+          icon-arrow-left(class="text-xl text-slate-500")
         .arrow.right(@click="next()")
-          i.uil.uil-arrow-right
+          icon-arrow-right(class="text-xl text-slate-500")
   .testimony-right(:style="{ backgroundImage: `url(${testimony.image})` }")
   .img
     img(:src="testimony.image" alt="Testimony Image")

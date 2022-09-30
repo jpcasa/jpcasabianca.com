@@ -1,4 +1,7 @@
 <script setup>
+import IconLocationPoint from '~icons/uil/location-point'
+import IconCalendarAlt from '~icons/uil/calendar-alt'
+
 defineProps({
   company: {
     type: String,
@@ -51,10 +54,10 @@ defineProps({
       span Read More
   .bottom
     .bottom-item
-      i.uil.uil-location-point
+      icon-location-point
       p {{ location }}
     .bottom-item
-      i.uil.uil-calendar-alt
+      icon-calendar-alt
       p {{ startDate }} - {{ endDate }}
 </template>
 
@@ -123,11 +126,11 @@ defineProps({
       @apply flex items-center mr-4;
 
       i {
-        @apply text-teal-900 text-lg leading-none mr-1;
+        @apply text-teal-900 text-lg leading-none;
       }
 
       p {
-        @apply text-slate-400 text-sm;
+        @apply text-slate-400 text-sm ml-1;
       }
 
       &:last-of-type {
