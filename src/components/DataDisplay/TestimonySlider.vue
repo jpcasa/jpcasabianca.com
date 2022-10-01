@@ -33,7 +33,7 @@ const prev = () => {
 <template lang="pug">
 .testimony-slider
   .testimony-left
-    img(src="/img/stars.png" alt="Review Stars")
+    img(src="/img/stars.webp" alt="Review Stars")
     p.testimony {{ testimony.testimony }}
     .who
       .line

@@ -10,7 +10,7 @@ export const useTestimoniesStore = defineStore({
         company: 'Cartkit',
         role: 'Senior Product Designer',
         rating: 5,
-        image: '/img/user.png'
+        image: '/img/user.webp'
       },
       {
         testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -18,7 +18,7 @@ export const useTestimoniesStore = defineStore({
         company: 'AB INBEV',
         role: 'Senior Sales Manager',
         rating: 5,
-        image: '/img/user.png'
+        image: '/img/user.webp'
       },
       {
         testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -26,7 +26,7 @@ export const useTestimoniesStore = defineStore({
         company: 'Coolture Investments',
         role: 'Founder & CEO',
         rating: 5,
-        image: '/img/user.png'
+        image: '/img/user.webp'
       }
     ],
   }),

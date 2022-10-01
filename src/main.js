@@ -29,7 +29,7 @@ const app = createApp(App).use(router).use(head).use(pinia).use(VueWriter).use(V
 // GLOBAL FILTERS
 app.config.globalProperties.$filters = {
   image(id) {
-    return `${import.meta.env.VITE_ASSETS_URL}/${id}.png`
+    return `${import.meta.env.VITE_ASSETS_URL}/${id}.webp`
   }
 }
 

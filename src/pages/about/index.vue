@@ -100,10 +100,10 @@ onMounted(() => {
           a(href="https://www.casabianca.cc" target="_blank") Casabianca.cc Cycling Apparel.
         Button(type="primary" size="md") Let's Connect
       .right
-        img(src="/img/about@2x.png" alt="JP Casabianca")
+        img(src="/img/about-2.webp" alt="JP Casabianca")
   .container.top
     .logos 
-      img(src="/img/logos.png" alt="JP Casabianca - Apps")
+      img(src="/img/logos.webp" alt="JP Casabianca - Apps")
     .skills
       .container-small
         TextSection(padding="pt-0 pb-4" description="You can find out what tools, apps, and services I use in my day-to-day work and life. Find design, frontend, backend, and marketing skills.")
@@ -214,7 +214,7 @@ onMounted(() => {
       )
       .apps
         .app(v-for="i in 18" :key="i")
-          img(:src="`/img/apps/app-${i}.png`" alt="JP Casabianca App")
+          img(:src="`/img/apps/app-${i}.webp`" alt="JP Casabianca App")
   .testimonies
     .container-4
       TextSection(

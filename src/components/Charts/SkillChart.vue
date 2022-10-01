@@ -25,7 +25,7 @@ const datasetLength = computed(() => props.datasets.length)
     .label-grid
       .label-grid-item(v-for="(item, i) in datasets" :key="i")
         p {{ item.name }}
-        img(:src="`/img/icons/${item.icon}.png`" alt="JP Casabianca Skill Icon")
+        img(:src="`/img/icons/${item.icon}.webp`" alt="JP Casabianca Skill Icon")
 .skill-chart-mobile
   .chart
     .chart-row(
@@ -33,7 +33,7 @@ const datasetLength = computed(() => props.datasets.length)
       :key="i"
     )
       .img
-        img(:src="`/img/icons/${row.icon}.png`" alt="JP Casabianca Skill Icon")
+        img(:src="`/img/icons/${row.icon}.webp`" alt="JP Casabianca Skill Icon")
       .chart-bar-cont
         .chart-bar(:style="{ width: `${row.level * 10}%` }")
       .label {{ row.level }}
