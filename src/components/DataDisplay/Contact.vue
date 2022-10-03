@@ -31,19 +31,19 @@
   @apply grid grid-cols-2 gap-6;
 
   .channel {
-    @apply text-center border border-slate-200 rounded p-6;
+    @apply text-center border border-slate-200 rounded p-2 md:p-6;
     @apply cursor-pointer;
     
     img {
-      @apply w-16 mx-auto;
+      @apply w-12 md:w-16 mt-2 mx-auto;
     }
 
     p {
-      @apply text-teal-900 font-medium text-base my-4;
+      @apply text-teal-900 font-medium text-sm md:text-base my-2 md:my-4;
     }
 
     span {
-      @apply text-slate-500 test-sm;
+      @apply text-slate-500 text-xs md:text-sm block mb-2;
     }
 
     &:hover {

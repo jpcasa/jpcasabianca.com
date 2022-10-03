@@ -72,7 +72,7 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
     component(:is="item.icon")
     span {{ item.name }}
   n-modal(v-model:show="showModal")
-    Card(padding="p-16" max-width="max-w-xl")
+    Card(max-width="max-w-xl")
       Contact
 </template>
 
@@ -83,6 +83,10 @@ header {
 
   .container {
     @apply flex items-center h-full;
+  }
+
+  .card {
+    @apply mx-12;
   }
 
   .left,

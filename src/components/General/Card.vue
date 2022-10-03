@@ -6,7 +6,7 @@ defineProps({
   },
   maxWidth: {
     type: String,
-    default: 'w-full'
+    default: 'max-w-7xl'
   }
 })
 </script>
@@ -18,6 +18,6 @@ defineProps({
 
 <style lang="scss" scoped>
 .card {
-  @apply bg-white rounded border border-slate-200 w-full mx-auto;
+  @apply bg-white rounded border border-slate-200 w-5/6 mx-auto;
 }
 </style>
