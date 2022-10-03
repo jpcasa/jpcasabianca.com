@@ -1,22 +1,21 @@
 <script setup>
+import { NModal } from 'naive-ui'
+
 // import menus pinia store
 import { useMenusStore } from '~/stores/menus'
 
 const menusStore = useMenusStore()
 
 const props = defineProps({
-  mode: {
-    type: String,
-    default: 'light'
-  }
+  mode: { type: String, default: 'light' }
 })
 
 const route = useRoute()
 
 const windowScroll = ref(0)
-
 const headerMode = ref(props.mode)
 const withBg = ref(false)
+const showModal = ref(false)
 
 const buttonTypes = computed(() => {
   return headerMode.value === 'light' ? ['default', 'dark'] : ['secondary', 'primary']
@@ -33,17 +32,10 @@ const handleScroll = event => {
   }
 }
 
-const linkActive = link => {
-  return link == `/${route.path.split('/')[1]}`
-}
+const linkActive = link => link == `/${route.path.split('/')[1]}`
 
-onBeforeMount(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+onBeforeMount(() => window.addEventListener('scroll', handleScroll))
+onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <template lang="pug">
@@ -62,7 +54,7 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
           ) {{ item.name }}
           a(v-if="!item.local" :href="item.link" target="_blank") {{ item.name }}
     .right
-      Button(:type="buttonTypes[1]") Let's Connect
+      Button(:type="buttonTypes[1]" @click="showModal = true") Let's Connect
 .mobile-nav-bottom
   router-link.mobile-nav-item(
     v-for="(item, i) in menusStore.mobileMenus[0]"
@@ -79,6 +71,9 @@ header(:class="[headerMode, { 'with-bg': withBg }]")
   )
     component(:is="item.icon")
     span {{ item.name }}
+  n-modal(v-model:show="showModal")
+    Card(padding="p-16" max-width="max-w-xl")
+      Contact
 </template>
 
 <style lang="scss" scoped>

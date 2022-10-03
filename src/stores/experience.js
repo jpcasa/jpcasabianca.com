@@ -7,7 +7,8 @@ export const useExperienceStore = defineStore({
     itemsPerPage: 3,
     subjectFilters: [],
     caseStudies: null,
-    experience: null
+    experience: null,
+    caseStudy: null,
   }),
   getters: {
     pages: state => Math.ceil(state.experience.length / state.itemsPerPage),
@@ -55,6 +56,9 @@ export const useExperienceStore = defineStore({
     },
     setExperience(results) {
       this.experience = results
+    },
+    setCaseStudy(result) {
+      this.caseStudy = result
     }
   }
 })

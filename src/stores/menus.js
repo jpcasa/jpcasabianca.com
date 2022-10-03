@@ -14,29 +14,29 @@ export const useMenusStore = defineStore({
         {
           name: 'About Me',
           link: '/about',
-          icon: IconUser,
+          icon: markRaw(IconUser),
         },
         {
           name: 'Work' ,
           link: '/work',
-          icon: IconBriefcaseAlt,
+          icon: markRaw(IconBriefcaseAlt),
         },
         {
           name: 'Resources',
           link: '/resources',
-          icon: IconCloudComputing,
+          icon: markRaw(IconCloudComputing),
         }
       ],
       [
         {
           name: 'Play',
           link: 'https://www.instagram.com/jpcasabiancai/',
-          icon: IconInstagram,
+          icon: markRaw(IconInstagram),
         },
         {
           name: 'Blog',
           link: 'https://medium.com/@jpc_774',
-          icon: IconBookAlt,
+          icon: markRaw(IconBookAlt),
         }
       ]
     ],
@@ -92,8 +92,8 @@ export const useMenusStore = defineStore({
     moreMenu: [
       {
         name: 'CV',
-        link: '/cv',
-        local: true,
+        link: '/PDF/CV_2022.pdf',
+        local: false,
       },
       {
         name: 'Privacy Policy',

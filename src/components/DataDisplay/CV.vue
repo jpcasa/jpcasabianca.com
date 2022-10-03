@@ -1,6 +1,8 @@
 <script setup>
 import IconReceiptAlt from '~icons/uil/receipt-alt'
 import IconDownload from '~icons/uil/download-alt'
+
+const downloadCV = () => window.location.href = '/PDF/CV_2022.pdf'
 </script>
 
 <template lang="pug">
@@ -10,7 +12,7 @@ import IconDownload from '~icons/uil/download-alt'
     .icon-square
       icon-receipt-alt
     span jp-resume.pdf
-  Button(type="dark")
+  Button(type="dark" @click="downloadCV()")
     span Download
     icon-download
 </template>

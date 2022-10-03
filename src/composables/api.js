@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 /*
   Set up basic configuration for axios.
@@ -87,6 +88,20 @@ export function useApi() {
     }
   }
 
+  const getCaseStudy = async slug => {
+    loading.value = true
+    try {
+      const query = qs.stringify({ filter: { seo_slug: { _eq: slug }}})
+      const { data } = await axiosClient.get(`/Case_Studies?${query}`)
+      loading.value = false
+      return [null, data]
+    } catch (error) {
+      console.error(error)
+      loading.value = false
+      return [error]
+    }
+  }
+
   return {
     getCaseStudiesSync,
     getCaseStudies,
@@ -94,6 +109,7 @@ export function useApi() {
     createResource,
     getSkills,
     getExperience,
+    getCaseStudy,
     loading,
     loadingSkills,
     loadingExperience

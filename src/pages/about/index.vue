@@ -3,7 +3,7 @@ import IconArrowLeft from '~icons/uil/arrow-left'
 import IconArrowRight from '~icons/uil/arrow-right'
 import IconTimes from '~icons/uil/times'
 
-import { NDatePicker } from 'naive-ui'
+import { NModal } from 'naive-ui'
 
 // import api composable
 import { useMetas } from '~/composables/metas'
@@ -52,6 +52,7 @@ const tags = [
 ]
 
 const range = ref([118313526e4, Date.now()])
+const showModal = ref(false)
 
 const setSkillTab = tab => skillActive.value = tab
 
@@ -79,6 +80,8 @@ const loadData = () => {
   loadExperience()
 }
 
+const downloadCV = () => window.location.href = '/PDF/CV_2022.pdf'
+
 onMounted(() => {
   loadData()
 })
@@ -98,7 +101,7 @@ onMounted(() => {
           a(href="https://www.cartkit.com/" target="_blank") Cartkit
           | and founded
           a(href="https://www.casabianca.cc" target="_blank") Casabianca.cc Cycling Apparel.
-        Button(type="primary" size="md") Let's Connect
+        Button(type="primary" size="md" @click="showModal = true") Let's Connect
       .right
         img(src="/img/about-2.webp" alt="JP Casabianca")
   .container.top
@@ -151,19 +154,10 @@ onMounted(() => {
           padding="p-0"
           text-align="text-left"
         )
-        .filter-tags
-          p.label Filter experience by subject:
-          .tags
-            .tag-parent
-              Tag(
-                v-for="(tag, i) in tags"
-                :key="i"
-                :type="experienceStore.subjectFilters.includes(tag.value) ? tag.type : 'default'"
-                size="md"
-                border
-                cursor
-                @click="experienceStore.toggleSubjectFilter(tag)"
-              ) {{ tag.label }}
+        .filter-date
+          p.label Resume
+          span Download a copy of my latest resume in PDF
+          Button(@click="downloadCV()") Download CV
       .experience-right
         .filters-active(v-if="experienceStore.subjectFiltersString")
           span Filtered by:
@@ -177,8 +171,8 @@ onMounted(() => {
               :company="exp.company"
               :logo="$filters.image(exp.logo)"
               :role="exp.role"
-              :startDate="exp.startDate"
-              :endDate="exp.endDate"
+              :startDate="exp.start_date"
+              :endDate="exp.end_date"
               :tags="exp.tags"
               :summary="exp.summary"
               :location="exp.location"
@@ -211,6 +205,7 @@ onMounted(() => {
       TextSection(
         title="My Usual Apps"
         subtitle="Some of the apps I use everyday"
+        description="These are some of the apps that I use everyday for work, personal, and hobbies. "
       )
       .apps
         .app(v-for="i in 18" :key="i")
@@ -220,9 +215,13 @@ onMounted(() => {
       TextSection(
         title="What People are Saying..."
         subtitle="Some honest testimonials from people I’ve worked with"
+        description="These are some of the testimonials I’ve received from people I’ve worked with. I’ve worked with a lot of companies and startups as a designer, developer, and adevisor. I’ve also been a product manager and a business owner."
         padding="py-24"
       )
       TestimonySlider(:testimonies="testimoniesStore.testimonies")
+n-modal(v-model:show="showModal")
+  Card(padding="p-16" max-width="max-w-xl")
+    Contact
 </template>
 
 <style lang="scss" scoped>
@@ -267,6 +266,12 @@ onMounted(() => {
   .filter-date,
   .filter-tags {
     @apply mt-8;
+  }
+
+  .filter-date {
+    span {
+      @apply block text-sm text-slate-500 mb-4;
+    }
   }
 
   .label {

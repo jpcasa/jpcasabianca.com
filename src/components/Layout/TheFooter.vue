@@ -1,7 +1,10 @@
 <script setup>
+import { NModal } from 'naive-ui'
+
 import { useMenusStore } from '~/stores/menus'
 
 const menusStore = useMenusStore()
+const showModal = ref(false)
 </script>
 
 <template lang="pug">
@@ -12,19 +15,22 @@ footer
         p Want to get in touch?
         span Just click on the button on the right and shoot me any questions you have
       .right
-        Button(size="md") Contact Me
+        Button(size="md" @click="showModal = true") Contact Me
   .footer-bottom
     .container-4
       .main
         router-link.logo-link(to="/")
           Logo(width="w-48")
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+        p Hey, I’m JP. An experienced UI/UX Designer and Engineer based in Bogotá, Colombia. Working Remotely EST Timezone.
       .menus
         .menu(v-for="(menu, i) in menusStore.allMenus" :key="i")
           p.menu-title {{ menu.title }}
           .menu-item(v-for="(item, j) in menu.items" :key="j")
             router-link(v-if="item.local" :to="item.link") {{ item.name }}
             a(v-else :href="item.link" target="_blank") {{ item.name }}
+n-modal(v-model:show="showModal")
+  Card(padding="p-16" max-width="max-w-xl")
+    Contact
 </template>
 
 <style lang="scss" scoped>

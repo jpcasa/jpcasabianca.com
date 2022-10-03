@@ -19,7 +19,7 @@ onMounted(() => {
   setHeaderMode()
 })
 
-watch(() => route.path, setHeaderMode())
+watchEffect(() => route.path, setHeaderMode())
 </script>
 
 <template lang="pug">
