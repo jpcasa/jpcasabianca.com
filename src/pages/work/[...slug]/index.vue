@@ -10,12 +10,14 @@ const { getCaseStudy, loading } = useApi()
 const route = useRoute()
 const slug = ref(null)
 const caseStudyTitle = ref('')
+const caseStudyImage = ref('')
 
 const fetchCaseStudy = async slug => {
   const [error, response] = await getCaseStudy(slug)
   if (error) return
   exprienceStore.setCaseStudy(response.data[0])
-  caseStudyTitle.value = exprienceStore.caseStudy.title
+  caseStudyTitle.value = response.data[0].title
+  caseStudyImage.value = response.data[0].image
 }
 
 const loadCaseStudy = () => {
@@ -24,7 +26,11 @@ const loadCaseStudy = () => {
 }
 
 useMeta(computed(() => ({
-  title: `${caseStudyTitle.value} Case Study`
+  title: `${caseStudyTitle.value} Case Study`,
+  meta: [{
+    name: 'og:image',
+    content: `https://oyy58age.directus.app/assets/${caseStudyImage.value}.webp`
+  }]
 })))
 
 onMounted(() => loadCaseStudy())

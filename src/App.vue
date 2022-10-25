@@ -12,6 +12,7 @@ useMeta({
     { name: 'og:type', content: 'website.portfolio' },
     { name: 'keywords', content: 'JP Casabianca, Casabianca, Remote Dev Colombia, Remote Dev Vue EST, Designer, Frontend, UX, Engineer, Figma' },
     { name: 'image', content: 'https://res.cloudinary.com/dpifbvbai/image/upload/v1664483318/user.png' },
+    { name: 'og:image', content: 'https://res.cloudinary.com/dpifbvbai/image/upload/v1664483318/user.png' },
     { name: 'og:site_name', content: 'JP Casabianca\'s Portfolio' },
     { name: 'og:url', content: 'https://www.jpcasabianca.com' },
     { property: 'twitter:card', content: 'summary_large_image' }
