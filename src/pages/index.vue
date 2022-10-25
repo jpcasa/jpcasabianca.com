@@ -1,7 +1,5 @@
 <script setup>
-import { useMetas } from '~/composables/metas'
-
-const { setMetaTitle, metas } = useMetas()
+import { useMeta } from 'vue-meta'
 
 const arr = [
   'I create awesome digital experiences.',
@@ -12,8 +10,7 @@ const arr = [
   'I play Zelda and PS4.'
 ]
 
-setMetaTitle('Home')
-useHead(metas)
+useMeta({ title: 'About Me' })
 </script>
 
 <template lang="pug">

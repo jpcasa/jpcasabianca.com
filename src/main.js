@@ -4,6 +4,7 @@ import VueSecureHTML from 'vue-html-secure'
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
+import { createMetaManager } from 'vue-meta'
 
 import { createPinia } from 'pinia'
 import VueWriter from 'vue-writer'
@@ -24,7 +25,7 @@ const router = createRouter({ history: createWebHistory(), routes })
 const pinia = createPinia()
 
 // DEFINE APP
-const app = createApp(App).use(router).use(head).use(pinia).use(VueWriter).use(VueSecureHTML)
+const app = createApp(App).use(router).use(head).use(pinia).use(VueWriter).use(VueSecureHTML).use(createMetaManager())
 
 // GLOBAL FILTERS
 app.config.globalProperties.$filters = {

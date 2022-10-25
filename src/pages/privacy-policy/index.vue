@@ -1,11 +1,6 @@
 <script setup>
-// import api composable
-import { useMetas } from '~/composables/metas'
-
-const { setMetaTitle, metas } = useMetas()
-
-setMetaTitle('Privacy Policy')
-useHead(metas)
+import { useMeta } from 'vue-meta'
+useMeta({ title: 'Privacy Policy' })
 </script>
 
 <template lang="pug">

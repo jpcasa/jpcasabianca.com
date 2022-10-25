@@ -4,9 +4,8 @@ import IconArrowRight from '~icons/uil/arrow-right'
 import IconTimes from '~icons/uil/times'
 
 import { NModal } from 'naive-ui'
+import { useMeta } from 'vue-meta'
 
-// import api composable
-import { useMetas } from '~/composables/metas'
 import { useApi } from '~/composables/api'
 
 // import skills pinia store
@@ -26,12 +25,8 @@ const {
   loadingSkills,
   loadingExperience
 } = useApi()
-const { setMetaTitle, metas } = useMetas()
 
-const { skillActive } = storeToRefs(skillsStore)
-
-setMetaTitle('About')
-useHead(metas)
+useMeta({ title: 'About Me' })
 
 const arr = [
   'I create awesome digital experiences.',
@@ -51,6 +46,7 @@ const tags = [
   { label: 'Sales', value: 'sales', type: 'red' },
 ]
 
+const { skillActive } = storeToRefs(skillsStore)
 const range = ref([118313526e4, Date.now()])
 const showModal = ref(false)
 

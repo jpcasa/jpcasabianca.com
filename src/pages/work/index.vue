@@ -1,16 +1,14 @@
 <script setup>
+import { useMeta } from 'vue-meta'
 import { useApi } from '~/composables/api'
-import { useMetas } from '~/composables/metas'
 
 import { useExperienceStore } from '~/stores/experience'
 
 const { getCaseStudies, loading } = useApi()
-const { setMetaTitle, metas } = useMetas()
 
 const experienceStore = useExperienceStore()
 
-setMetaTitle('Work')
-useHead(metas)
+useMeta({ title: 'Work' })
 
 const loadCaseStudies = async () => {
   const [error, response] = await getCaseStudies()
@@ -21,9 +19,7 @@ const loadCaseStudies = async () => {
   experienceStore.setCaseStudies(response.data)
 }
 
-onMounted(() => {
-  loadCaseStudies()
-})
+onMounted(() => loadCaseStudies())
 </script>
 
 <template lang="pug">
