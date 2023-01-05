@@ -51,7 +51,7 @@ defineProps({
   .summary
     p 
       | {{ summary }}
-      span Read More
+      //- span Read More
   .bottom
     .bottom-item
       icon-location-point

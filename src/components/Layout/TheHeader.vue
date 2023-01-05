@@ -169,8 +169,7 @@ header.with-bg {
   @apply bg-white border-b border-slate-200;
 
   @screen lg {
-    @apply bg-opacity-80;
-    border-bottom: none;
+    @apply bg-opacity-95;
   }
 }
 
