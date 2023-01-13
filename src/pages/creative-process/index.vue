@@ -118,7 +118,7 @@ n-modal(v-model:show="showModal")
 
 .creative-img {
   img {
-    @apply rounded border border-slate-200;
+    @apply rounded border border-slate-200 shadow-lg;
   }
 }
 
