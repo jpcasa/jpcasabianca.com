@@ -2,7 +2,7 @@
 import IconReceiptAlt from '~icons/uil/receipt-alt'
 import IconDownload from '~icons/uil/download-alt'
 
-const downloadCV = () => window.location.href = '/PDF/CV_2022.pdf'
+const downloadCV = () => window.location.href = '/PDF/CV_2023.pdf'
 </script>
 
 <template lang="pug">

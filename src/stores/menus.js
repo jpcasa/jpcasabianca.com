@@ -103,7 +103,7 @@ export const useMenusStore = defineStore({
     moreMenu: [
       {
         name: 'CV',
-        link: '/PDF/CV_2022.pdf',
+        link: '/PDF/CV_2023.pdf',
         local: false,
       },
       {
