@@ -2,9 +2,9 @@
 import { useMeta } from 'vue-meta'
 
 const arr = [
+  'I use Vue 3, Vite, and Github Copilot to get shit done.',
   'I create awesome digital experiences.',
   'I design prototypes in Figma.',
-  'I use Vue 3 and Github Copilot to get shit done.',
   'I love Gravel and Road Cycling.',
   'I own a Sports Apparel Brand.',
   'I play Zelda and PS4.'
@@ -19,7 +19,7 @@ useMeta({ title: 'About Me' })
     .info
       .info-container
         h1
-          | Hey, I’m JP. An experienced UI/UX Designer and Engineer.
+          | Hey, I’m JP. An experienced UI/UX Designer and Frontend Engineer.
           span
             VueWriter(:array="arr" :typeSpeed="70")
         p.copy 
