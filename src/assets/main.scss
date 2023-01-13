@@ -69,12 +69,14 @@ img {
   @apply bg-teal-800 inline-block w-1;
   animation: blink 1s infinite;
 }
+
 .is-typed span.underscore {
   width: 10px;
   height: 1px;
   @apply bg-teal-800 inline-flex items-end;
   animation: blink 1s infinite;
 }
+
 .is-typed span.cursor.typing {
   animation: none;
 }
@@ -88,5 +90,40 @@ img {
   }
   99% {
     background-color: transparent;
+  }
+}
+
+.html-section {
+  p {
+    @apply text-slate-500 mb-6;
+  }
+
+  ul, li, span {
+    @apply text-slate-500;
+  }
+
+  strong {
+    @apply text-black font-medium;
+    
+    span {
+      @apply text-black font-medium;
+    }
+  }
+}
+
+.usual-apps {
+  @apply py-12;
+
+  .apps {
+    @apply grid gap-6 grid-cols-4 sm:grid-cols-5 md:grid-cols-7;
+    @apply lg:grid-cols-9 mb-20 justify-center;
+
+    .app {
+      @apply text-center;
+      
+      img {
+        @apply h-12 w-auto mx-auto;
+      }
+    }
   }
 }

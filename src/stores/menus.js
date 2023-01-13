@@ -52,6 +52,11 @@ export const useMenusStore = defineStore({
         local: true,
       },
       {
+        name: 'Process',
+        link: '/creative-process',
+        local: true,
+      },
+      {
         name: 'Resources',
         link: '/resources',
         local: true,

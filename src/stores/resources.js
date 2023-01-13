@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useResourcesStore = defineStore({
   id: 'resources',
   state: () => ({
-    resourcesFilter: { label: 'Product & Engineering', value: 'marketing' },
+    resourcesFilter: { label: 'Product & Engineering', value: 'engineering' },
     resourcesFilters: [
       { label: 'View All', value: 'all' },
       { label: 'Design & Research', value: 'design' },

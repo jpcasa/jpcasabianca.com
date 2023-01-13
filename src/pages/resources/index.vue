@@ -34,7 +34,7 @@ onMounted(() => {
     .small-cont
       p Let’s get some shit done!
       h1 Resources
-      span Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas maecenas pharetra.
+      span Here's a list of resources that I usually use or recommend. Feel free to filter by category below!
   .container
     .filters
       .filters-mobile

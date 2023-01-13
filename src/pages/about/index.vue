@@ -171,6 +171,7 @@ onMounted(() => {
               :endDate="exp.end_date"
               :tags="exp.tags"
               :summary="exp.summary"
+              :complete-summary="exp.complete_summary"
               :location="exp.location"
             )
           .pagination-parent(v-if="!experienceStore.subjectFilters.length")
@@ -236,23 +237,6 @@ n-modal(v-model:show="showModal")
 
   .container-4 {
     @apply mb-24;
-  }
-}
-
-.usual-apps {
-  @apply py-12;
-
-  .apps {
-    @apply grid gap-6 grid-cols-4 sm:grid-cols-5 md:grid-cols-7;
-    @apply lg:grid-cols-9 mb-20 justify-center;
-
-    .app {
-      @apply text-center;
-      
-      img {
-        @apply h-12 w-auto mx-auto;
-      }
-    }
   }
 }
 

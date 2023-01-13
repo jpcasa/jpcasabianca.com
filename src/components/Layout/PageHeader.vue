@@ -4,11 +4,15 @@ defineProps({
     type: String,
     default: 'left',
   },
+  withOverlay: {
+    type: Boolean,
+    default: true,
+  },
 })
 </script>
 
 <template lang="pug">
-.page-header
+.page-header(:class="{ 'with-overlay': withOverlay }")
   .container
     .left(:class="`text-${align}`")
       slot
@@ -18,7 +22,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .page-header {
-  @apply pt-28 pb-40 -mb-24 bg-teal-800;
+  @apply py-28 bg-teal-800;
 
   .container {
     @apply flex items-center justify-between;
@@ -27,5 +31,9 @@ defineProps({
       @apply flex-auto;
     }
   }
+}
+
+.page-header.with-overlay {
+  @apply pb-40 -mb-24;
 }
 </style>

@@ -2,6 +2,8 @@
 import IconLocationPoint from '~icons/uil/location-point'
 import IconCalendarAlt from '~icons/uil/calendar-alt'
 
+const showDrawer = ref(false)
+
 defineProps({
   company: {
     type: String,
@@ -34,8 +36,14 @@ defineProps({
   location: {
     type: String,
     default: 'Remote (EST)'
+  },
+  completeSummary: {
+    type: String,
+    default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   }
 })
+
+const toggleDrawer = () => showDrawer.value = !showDrawer.value
 </script>
 
 <template lang="pug">
@@ -51,7 +59,7 @@ defineProps({
   .summary
     p 
       | {{ summary }}
-      //- span Read More
+      span(@click="toggleDrawer()") Read More
   .bottom
     .bottom-item
       icon-location-point
@@ -59,10 +67,33 @@ defineProps({
     .bottom-item
       icon-calendar-alt
       p {{ startDate }} - {{ endDate }}
+  Drawer(
+    v-if="showDrawer"
+    title="Experience Summary"
+    @close="toggleDrawer"
+  )
+    .experience-card-large
+      .tags
+        .tag-cont(v-for="(tag, i) in tags" :key="i")
+          Tag(randomize-type) {{ tag }}
+      .top
+        img(:src="logo" alt="CartKit Logo - JP Casabianca")
+        .title
+          p {{ company }}
+          span @ {{ role }}
+      .bottom
+        .bottom-item
+          IconLocationPoint
+          p {{ location }}
+        .bottom-item
+          IconCalendarAlt
+          p {{ startDate }} - {{ endDate }}
+      .summary.html-section(v-html="completeSummary")
 </template>
 
 <style lang="scss" scoped>
-.experience-card {
+.experience-card,
+.experience-card-large {
   .top {
     @apply flex items-center;
 
@@ -84,21 +115,21 @@ defineProps({
       span {
         @apply text-slate-500 lg:ml-1;
       }
+    }    
+  }
+
+  .tags {
+    @apply flex-none grid gap-1 text-right;
+
+    @screen md {
+      @apply flex items-center;
     }
 
-    .tags {
-      @apply flex-none grid gap-1 text-right;
+    .tag {
+      @apply mr-1;
 
-      @screen md {
-        @apply flex items-center;
-      }
-
-      .tag {
-        @apply mr-1;
-
-        &:last-of-type {
-          @apply mr-0;
-        }
+      &:last-of-type {
+        @apply mr-0;
       }
     }
   }
@@ -138,5 +169,33 @@ defineProps({
       }
     }
   }
+}
+
+.experience-card-large {
+  .tags {
+    @apply mb-4 flex items-center;    
+  }
+
+  .top {
+    img {
+      @apply w-20 h-20;
+    }
+
+    .title {
+      @apply flex-col items-start justify-center;
+
+      p {
+        @apply text-lg;
+      }
+
+      span {
+        @apply ml-0 text-base;
+      }
+    }
+  }
+
+  .bottom {
+    @apply mt-4;
+  }  
 }
 </style>

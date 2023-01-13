@@ -19,6 +19,10 @@ defineProps({
   padding: {
     type: String,
     default: 'py-16'
+  },
+  normalTitle: {
+    type: Boolean,
+    default: true
   }
 })
 </script>
@@ -26,7 +30,7 @@ defineProps({
 <template lang="pug">
 div(:class="[textAlign, padding]")
   p.subtitle {{ subtitle }}
-  p.title {{ title }}
+  p.title(:class="{ normal: normalTitle, strong: !normalTitle }") {{ title }}
   p.description {{ description }}
 </template>
 
@@ -37,7 +41,14 @@ div(:class="[textAlign, padding]")
 
 .title {
   @apply text-white text-2xl mb-4 text-teal-900;
+}
+
+.title.normal {
   font-family: 'DM Serif Display', serif;
+}
+
+.title.strong {
+  @apply font-semibold;
 }
 
 .description {
