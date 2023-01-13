@@ -174,11 +174,11 @@ header.with-bg {
 }
 
 .mobile-nav-bottom {
-  @apply fixed bottom-0 inset-x-0 bg-teal-900 z-10 grid;
-  @apply grid-cols-5 h-12 items-center lg:hidden;
+  @apply fixed bottom-0 inset-x-0 bg-teal-900 z-10 flex;
+  @apply h-12 items-center lg:hidden;
 
   .mobile-nav-item {
-    @apply text-center text-white flex flex-col h-full justify-center items-center;
+    @apply text-center text-white flex flex-col flex-1 h-full justify-center items-center;
 
     span {
       @apply text-xs;

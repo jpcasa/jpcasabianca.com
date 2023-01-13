@@ -5,6 +5,7 @@ import IconBriefcaseAlt from '~icons/uil/briefcase-alt'
 import IconCloudComputing from '~icons/uil/cloud-computing'
 import IconInstagram from '~icons/uil/instagram'
 import IconBookAlt from '~icons/uil/book-alt'
+import IconLightbulbAlt from '~icons/uil/lightbulb-alt'
 
 export const useMenusStore = defineStore({
   id: 'menus',
@@ -20,6 +21,11 @@ export const useMenusStore = defineStore({
           name: 'Work' ,
           link: '/work',
           icon: markRaw(IconBriefcaseAlt),
+        },
+        {
+          name: 'Process',
+          link: '/creative-process',
+          icon: markRaw(IconLightbulbAlt),
         },
         {
           name: 'Resources',
