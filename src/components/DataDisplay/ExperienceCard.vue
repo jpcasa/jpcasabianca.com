@@ -1,6 +1,7 @@
 <script setup>
 import IconLocationPoint from '~icons/uil/location-point'
 import IconCalendarAlt from '~icons/uil/calendar-alt'
+import IconLink from '~icons/uil/link'
 
 const showDrawer = ref(false)
 
@@ -40,6 +41,10 @@ defineProps({
   completeSummary: {
     type: String,
     default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  },
+  link: {
+    type: String,
+    default: null
   }
 })
 
@@ -61,12 +66,16 @@ const toggleDrawer = () => showDrawer.value = !showDrawer.value
       | {{ summary }}
       span(@click="toggleDrawer()") Read More
   .bottom
-    .bottom-item
-      icon-location-point
-      p {{ location }}
-    .bottom-item
-      icon-calendar-alt
-      p {{ startDate }} - {{ endDate }}
+    .bottom-left
+      .bottom-item
+        icon-location-point
+        p {{ location }}
+      .bottom-item
+        icon-calendar-alt
+        p {{ startDate }} - {{ endDate }}
+    .bottom-right(v-if="link")
+      a(:href="link" target="_blank")
+        icon-link
   Drawer(
     v-if="showDrawer"
     title="Experience Summary"
@@ -82,12 +91,15 @@ const toggleDrawer = () => showDrawer.value = !showDrawer.value
           p {{ company }}
           span @ {{ role }}
       .bottom
-        .bottom-item
-          IconLocationPoint
-          p {{ location }}
-        .bottom-item
-          IconCalendarAlt
-          p {{ startDate }} - {{ endDate }}
+        .bottom-left
+          .bottom-item
+            IconLocationPoint
+            p {{ location }}
+          .bottom-item
+            IconCalendarAlt
+            p {{ startDate }} - {{ endDate }}
+        .bottom-right
+          a(:href="link" target="_blank") Visit Website
       .summary.html-section(v-html="completeSummary")
 </template>
 
@@ -152,6 +164,23 @@ const toggleDrawer = () => showDrawer.value = !showDrawer.value
 
   .bottom {
     @apply flex items-center;
+
+    .bottom-left {
+      @apply flex-auto flex items-center;
+    }
+
+    .bottom-right {
+      @apply flex-none;
+
+      a {
+        @apply text-teal-900 w-8 h-8 rounded-full border border-slate-300;
+        @apply flex items-center justify-center;
+
+        &:hover {
+          @apply border-teal-600 bg-teal-600 text-white;
+        }
+      }
+    }
 
     .bottom-item {
       @apply flex items-center mr-4;

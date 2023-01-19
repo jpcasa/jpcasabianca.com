@@ -173,6 +173,7 @@ onMounted(() => {
               :summary="exp.summary"
               :complete-summary="exp.complete_summary"
               :location="exp.location"
+              :link="exp.link"
             )
           .pagination-parent(v-if="!experienceStore.subjectFilters.length")
             Pagination(
