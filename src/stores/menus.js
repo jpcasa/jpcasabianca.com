@@ -4,7 +4,7 @@ import IconUser from '~icons/uil/user'
 import IconBriefcaseAlt from '~icons/uil/briefcase-alt'
 import IconCloudComputing from '~icons/uil/cloud-computing'
 import IconInstagram from '~icons/uil/instagram'
-import IconBookAlt from '~icons/uil/book-alt'
+import IconImageSearch from '~icons/uil/image-search'
 import IconLightbulbAlt from '~icons/uil/lightbulb-alt'
 
 export const useMenusStore = defineStore({
@@ -31,6 +31,11 @@ export const useMenusStore = defineStore({
           name: 'Resources',
           link: '/resources',
           icon: markRaw(IconCloudComputing),
+        },
+        {
+          name: 'Gallery',
+          link: '/gallery',
+          icon: markRaw(IconImageSearch),
         }
       ],
       [
@@ -38,12 +43,7 @@ export const useMenusStore = defineStore({
           name: 'Play',
           link: 'https://www.instagram.com/jpcasabiancai/',
           icon: markRaw(IconInstagram),
-        },
-        {
-          name: 'Blog',
-          link: 'https://medium.com/@jpc_774',
-          icon: markRaw(IconBookAlt),
-        }
+        }        
       ]
     ],
     mainMenu: [
@@ -65,6 +65,11 @@ export const useMenusStore = defineStore({
       {
         name: 'Resources',
         link: '/resources',
+        local: true,
+      },
+      {
+        name: 'Gallery',
+        link: '/gallery',
         local: true,
       },
       {
