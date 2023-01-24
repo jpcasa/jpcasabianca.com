@@ -39,6 +39,11 @@ useMeta(computed(() => ({
 })))
 
 const caseStudy = computed(() => caseStudyStore.caseStudy)
+const requestAccess = () => {
+  const subject = 'Hey, I want access to Figma!'
+  const body = `Hi JP, I would like access to the Figma file for ${caseStudyStore.caseStudy.name}.`
+  window.open(`mailto:hola@jpcasabianca.com?subject=${subject}&body=${body}`)
+}
 
 onMounted(() => loadCaseStudy())
 </script>
@@ -50,15 +55,20 @@ onMounted(() => loadCaseStudy())
   div(v-else-if="error")
     p {{ error }}
   div(v-else)
-    PageHeader.header(v-if="caseStudy" align="center" with-overlay)
+    PageHeader.header(
+      v-if="caseStudy"
+      :bg="caseStudy.header"
+      align="center"
+      with-overlay
+    )
       .container-small
-        img(src="/img/casabianca-logo.webp" alt="Casabianca Cycling Logo")
+        img(:src="caseStudy.logo" :alt="`${caseStudy.name} | JP Casabianca`")
         h1 {{ caseStudy.name }}
         span {{ caseStudy.description }}
     .container-medium
-      img(src="/img/case-studies/casabianca-top.webp" alt="Casabianca Cycling | jpcasabianca.com")
+      img(:src="caseStudy.img" :alt="`${caseStudy.name} | jpcasabianca.com`")
       .info-tabs-parent
-        InfoTabs(:items="caseStudy.mainItems" bar-color="#005353")
+        InfoTabs(:items="caseStudy.mainItems" :bar-color="caseStudy.barColor")
     .sections
       CaseStudyFeature(
         v-for="(section, i) in caseStudy.sections"
@@ -72,7 +82,9 @@ onMounted(() => loadCaseStudy())
         :bg="section.bg"
         :cta-color="caseStudy.ctaColor"
         :cta-bg="caseStudy.ctaBg"
+        :vertical="section.vertical"
         :flex-direction="i % 2 === 0 ? 'row' : 'row-reverse'"
+        @clicked="section.clickedCta()"
       )
     .cta-section
       .container-medium
@@ -80,17 +92,20 @@ onMounted(() => loadCaseStudy())
           h3 Like what you’re seeing? Reach out
           p Don’t be shy! I’m open to new challenges and opportunities.
         .right
-          Button(size="lg") Get In Touch
-    .figma-prototype
+          button(:style="{ backgroundColor: caseStudy.ctaBg, color: caseStudy.ctaColor }") Get In Touch
+    .figma-prototype(v-if="caseStudy.hasPrototype")
       .left
         h4 Complete Prototype in Figma with components
         .item(v-for="(item, i) in prototypeItems" :key="i")
           .icon(:style="{ backgroundColor: caseStudy.ctaBgLight, color: caseStudy.ctaBg }")
             icon-check
           p {{ item }}
-        Button(size="lg") Request Access
+        button(
+          :style="{ backgroundColor: caseStudy.ctaBg, color: caseStudy.ctaColor }"
+          @click="requestAccess()"
+        ) Request Access
       .right
-        img(src="/img/case-studies/casabianca-figma.webp" alt="Casabianca Cycling | Figma Prototype")
+        img(:src="caseStudy.figmaPreview" :alt="`${caseStudy.name} | Figma Prototype`")
 </template>
 
 <style lang="scss" scoped>
@@ -114,7 +129,7 @@ h2, h3, h4 {
 }
 
 .info-tabs-parent {
-  @apply mt-4 mb-8;
+  @apply mt-8 mb-8;
 }
 
 .sections {
@@ -123,6 +138,11 @@ h2, h3, h4 {
 
 .cta-section {
   @apply my-20;
+
+  button {
+    @apply px-6 py-3 rounded;
+  }
+  
   .container-medium {
     @apply bg-slate-100 rounded md:flex p-10;
 
@@ -145,6 +165,14 @@ h2, h3, h4 {
 
   @screen md {
     @apply grid-cols-2;
+  }
+
+  button {
+    @apply px-6 py-3 rounded;
+  }
+
+  img {
+    @apply border rounded-t border-slate-200;
   }
   
   .left {

@@ -51,7 +51,7 @@ const clickedCta = () => emit('clicked')
 
 <template lang="pug">
 .case-study-feature(:style="{ background: bg }" @click="clickedCta()")
-  .container(:style="{ flexDirection }" :class="{ row: flexDirection != 'row' }")
+  .container-medium(:style="{ flexDirection }" :class="{ row: flexDirection != 'row' }")
     .text
       p.subtitle(:style="{ color: ctaBg }") {{ subtitle }}
       p.title {{ title }}
@@ -63,11 +63,11 @@ const clickedCta = () => emit('clicked')
 
 <style lang="scss" scoped>
 .case-study-feature {
-  .container {
+  .container-medium {
     @apply py-16;
 
     @screen md {
-      @apply flex flex-row;
+      @apply flex flex-row items-center;
     }
 
     .text,
@@ -104,7 +104,7 @@ const clickedCta = () => emit('clicked')
     }
   }
 
-  .container.row {
+  .container-medium.row {
     .text {
       @screen md {
         @apply ml-12 mr-0;
