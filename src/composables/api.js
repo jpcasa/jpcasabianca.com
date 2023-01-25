@@ -26,7 +26,7 @@ export function useApi() {
   const getCaseStudies = async () => {
     loading.value = true
     try {
-      const { data } = await axiosClient.get('/Case_Studies')
+      const { data } = await axiosClient.get('/Case_Studies?sort=sort,order')
       loading.value = false
       return [null, data]
     } catch (error) {
