@@ -1,6 +1,9 @@
 <script setup>
 import { useApi } from '~/composables/api'
 import { useGalleryStore } from '~/stores/gallery'
+// import uil behance icon
+import IconBehance from '~icons/uil/behance'
+import IconDribbble from '~icons/uil/dribbble'
 
 const { getGallery, loadingGallery } = useApi()
 const galleryStore = useGalleryStore()
@@ -22,6 +25,19 @@ onMounted(() => loadGallery())
       h1 Design Gallery
       span Check out this cool gallery of shots from some of my work & personal projects, art, tattoos, and more! I’ve always been really passionate about design & art, but also coding... That’s why I think web and graphic design fits me so well!
       Button(@click="showModal = true" type="primary" size="md") Let's Connect
+      .social
+        a(
+          href="https://www.behance.net/jpcasabianca"
+          target="_blank"
+          class="behance"
+        )
+          icon-behance
+        a(
+          href="https://dribbble.com/jpcasabiancai"
+          target="_blank"
+          class="dribbble"
+        )
+          icon-dribbble
   .container
     .gallery-grid(v-if="!loadingGallery && galleryStore.items")
       a.gallery-item(
@@ -55,6 +71,27 @@ onMounted(() => loadGallery())
 
     span {
       @apply text-slate-200 block mb-4;
+    }
+  }
+
+  .social {
+    @apply flex flex-wrap items-center justify-center mt-4 text-xl text-white;
+
+    svg {
+      &:first-of-type {
+        @apply mr-1;
+      }
+    }
+    .dribbble {
+      &:hover {
+        color: #EA4C89;
+      }
+    }
+
+    .behance {
+      &:hover {
+        color: #0057FF;
+      }
     }
   }
 }
