@@ -1,10 +1,14 @@
 <script setup>
 import { NModal } from 'naive-ui'
+import moment from 'moment'
 
 import { useMenusStore } from '~/stores/menus'
 
 const menusStore = useMenusStore()
 const showModal = ref(false)
+
+// get current year
+const currentYear = moment().format('YYYY')
 </script>
 
 <template lang="pug">
@@ -28,6 +32,9 @@ footer
           .menu-item(v-for="(item, j) in menu.items" :key="j")
             router-link(v-if="item.local" :to="item.link") {{ item.name }}
             a(v-else :href="item.link" target="_blank") {{ item.name }}
+  .footer-copyright
+    .container-4
+      p © {{ currentYear }} JP Casabianca. All rights reserved.
 n-modal(v-model:show="showModal")
   Card(padding="p-16" max-width="max-w-xl")
     Contact
@@ -54,6 +61,10 @@ n-modal(v-model:show="showModal")
       @apply text-slate-500 block mb-6 md:mb-0;
     }
   }
+}
+
+.footer-copyright {
+  @apply border-t border-slate-200 py-4 text-center text-slate-500;
 }
 
 .footer-bottom {

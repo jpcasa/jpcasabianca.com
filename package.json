@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "dotenv": "^16.0.2",
+    "moment": "^2.29.4",
     "pinia": "^2.0.22",
     "qs": "^6.11.0",
     "simple-code-editor": "^1.2.2",

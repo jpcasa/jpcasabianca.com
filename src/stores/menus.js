@@ -104,6 +104,16 @@ export const useMenusStore = defineStore({
         link: 'https://github.com/jpcasa',
         local: false,
       },
+      {
+        name: 'Dribbble',
+        link: 'https://dribbble.com/jpcasabiancai',
+        local: false,
+      },
+      {
+        name: 'Behance',
+        link: 'https://www.behance.net/jpcasabianca',
+        local: false,
+      },
     ],
     moreMenu: [
       {
