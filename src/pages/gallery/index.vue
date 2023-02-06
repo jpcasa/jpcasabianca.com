@@ -59,11 +59,19 @@ onMounted(() => loadGallery())
 }
 
 .gallery-grid {
-  @apply grid grid-cols-2 gap-6 md:grid-cols-3;
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
 
   .gallery-item {
     @apply cursor-pointer rounded shadow-md bg-white bg-center bg-cover;
     height: 300px;
+
+    @screen md {
+      height: 220px;
+    }
+
+    @screen lg {
+      height: 320px;
+    }
 
     &:hover {
       @apply opacity-80 shadow-lg;
