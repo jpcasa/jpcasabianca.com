@@ -1,0 +1,77 @@
+<script setup>
+import { useApi } from '~/composables/api'
+import { useGalleryStore } from '~/stores/gallery'
+
+const { getGallery, loadingGallery } = useApi()
+const galleryStore = useGalleryStore()
+
+const loadGallery = async () => {
+  const [error, response] = await getGallery()
+  if (error) return
+  galleryStore.setItems(response.data)
+}
+
+onMounted(() => loadGallery())
+</script>
+
+<template lang="pug">
+.gallery-page
+  PageHeader.gallery-header(align="center")
+    .small-cont
+      p 10+ years designing digital assets
+      h1 Design Gallery
+      span Check out this cool gallery of shots from some of my work & personal projects, art, tattoos, and more! I’ve always been really passionate about design & art, but also coding... That’s why I think web and graphic design fits me so well!
+      Button(@click="showModal = true" type="primary" size="md") Let's Connect
+  .container
+    .gallery-grid(v-if="!loadingGallery && galleryStore.items")
+      a.gallery-item(
+        v-for="item in galleryStore.items"
+        :key="item.id"
+        :style="{ backgroundImage: `url(${item.imgs.items[0]})` }"
+        :href="item.imgs.items[0]"
+        target="_blank"
+      )
+    .loading(v-else)
+      Spinner(:full-screen="false")
+</template>
+
+<style lang="scss" scoped>
+.gallery-page {
+  @apply mb-24;
+}
+
+.gallery-header {
+  .small-cont {
+    @apply max-w-2xl mx-auto;
+
+    p {
+      @apply text-teal-500 font-medium mb-3;
+    }
+
+    h1 {
+      @apply text-white mb-6;
+    }
+
+    span {
+      @apply text-slate-200 block mb-4;
+    }
+  }
+}
+
+.gallery-grid {
+  @apply grid grid-cols-2 gap-6 md:grid-cols-3;
+
+  .gallery-item {
+    @apply cursor-pointer rounded shadow-md bg-white bg-center bg-cover;
+    height: 300px;
+
+    &:hover {
+      @apply opacity-80 shadow-lg;
+    }
+  }
+}
+
+.loading {
+  @apply bg-white rounded border border-slate-200;
+}
+</style>

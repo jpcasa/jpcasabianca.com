@@ -18,6 +18,7 @@ export function useApi() {
   const loading = ref(false)
   const loadingSkills = ref(false)
   const loadingExperience = ref(false)
+  const loadingGallery = ref(false)
 
   const { axiosClient } = setupApi()
 
@@ -102,6 +103,19 @@ export function useApi() {
     }
   }
 
+  const getGallery = async () => {
+    loadingGallery.value = true
+    try {
+      const { data } = await axiosClient.get('/gallery?sort=sort,-date_created')
+      loadingGallery.value = false
+      return [null, data]
+    } catch (error) {
+      console.error(error)
+      loadingGallery.value = false
+      return [error]
+    }
+  }
+
   return {
     getCaseStudiesSync,
     getCaseStudies,
@@ -112,6 +126,8 @@ export function useApi() {
     getCaseStudy,
     loading,
     loadingSkills,
-    loadingExperience
+    loadingExperience,
+    loadingGallery,
+    getGallery
   }
 }
