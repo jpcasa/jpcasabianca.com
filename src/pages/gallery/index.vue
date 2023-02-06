@@ -31,6 +31,7 @@ onMounted(() => loadGallery())
         :href="item.imgs.items[0]"
         target="_blank"
       )
+        p {{ item.title }}
     .loading(v-else)
       Spinner(:full-screen="false")
 </template>
@@ -63,6 +64,7 @@ onMounted(() => loadGallery())
 
   .gallery-item {
     @apply cursor-pointer rounded shadow-md bg-white bg-center bg-cover;
+    @apply flex flex-col justify-end;
     height: 300px;
 
     @screen md {
@@ -71,10 +73,20 @@ onMounted(() => loadGallery())
 
     @screen lg {
       height: 320px;
+    }    
+
+    p {
+      @apply block bg-black px-6 py-3 rounded-b text-sm bg-opacity-25 hidden;
+      @apply text-white font-medium;
+      transition: 0.4s all;
     }
 
     &:hover {
-      @apply opacity-80 shadow-lg;
+      @apply shadow-lg;
+
+      p {
+        @apply flex;
+      }
     }
   }
 }

@@ -26,7 +26,6 @@ const handleScroll = event => {
   if (lightHeaderPages.includes(route.path)) {
     headerMode.value = 'light'
     withBg.value = true
-    return
   }
   
   windowScroll.value = window.scrollY
