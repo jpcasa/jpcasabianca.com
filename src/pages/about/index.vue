@@ -52,22 +52,22 @@ const showModal = ref(false)
 
 const setSkillTab = tab => skillActive.value = tab
 
-const loadCaseStudies = async () => {
-  const [error, response] = await getCaseStudies()
+const loadCaseStudies = () => {
+  const [error, response] = getCaseStudies()
   if (error) return
-  experienceStore.setCaseStudies(response.data)
+  experienceStore.setCaseStudies(response)
 }
 
 const loadSkills = async () => {
   const [error, response] = await getSkills()
   if (error) return
-  skillsStore.setSoftSkills(response.data)
+  skillsStore.setSoftSkills(response)
 }
 
 const loadExperience = async () => {
   const [error, response] = await getExperience()
   if (error) return
-  experienceStore.setExperience(response.data)
+  experienceStore.setExperience(response)
 }
 
 const loadData = () => {

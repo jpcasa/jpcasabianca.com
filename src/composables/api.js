@@ -1,6 +1,10 @@
 import axios from 'axios'
 import qs from 'qs'
 
+import { caseStudies } from './mocks/caseStudies'
+import { experiences } from './mocks/experiences'
+import { skills } from './mocks/skills'
+
 /*
   Set up basic configuration for axios.
 */
@@ -24,12 +28,11 @@ export function useApi() {
 
   const getCaseStudiesSync = () =>  axiosClient.get('/case-studies')
 
-  const getCaseStudies = async () => {
+  const getCaseStudies = () => {
     loading.value = true
     try {
-      const { data } = await axiosClient.get('/case-studies')
       loading.value = false
-      return [null, data]
+      return [null, caseStudies]
     } catch (error) {
       console.error(error)
       loading.value = false
@@ -63,12 +66,11 @@ export function useApi() {
     }
   }
 
-  const getSkills = async () => {
+  const getSkills = () => {
     loadingSkills.value = true
     try {
-      const { data } = await axiosClient.get('/skills')
       loadingSkills.value = false
-      return [null, data]
+      return [null, skills]
     } catch (error) {
       console.error(error)
       loadingSkills.value = false
@@ -76,12 +78,11 @@ export function useApi() {
     }
   }
 
-  const getExperience = async () => {
+  const getExperience = () => {
     loadingExperience.value = true
     try {
-      const { data } = await axiosClient.get('/experiences')
       loadingExperience.value = false
-      return [null, data]
+      return [null, experiences]
     } catch (error) {
       console.error(error)
       loadingExperience.value = false

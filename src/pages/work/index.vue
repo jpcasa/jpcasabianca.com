@@ -16,7 +16,7 @@ const loadCaseStudies = async () => {
     console.log(error)
     return
   }
-  experienceStore.setCaseStudies(response.data)
+  experienceStore.setCaseStudies(response)
 }
 
 onMounted(() => loadCaseStudies())
