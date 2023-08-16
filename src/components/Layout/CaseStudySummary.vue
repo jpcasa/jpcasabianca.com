@@ -50,7 +50,7 @@ const setImage = id => `${import.meta.env.VITE_ASSETS_URL}/${id}.png`
 
 const bgStyles = computed(() => {
   return {
-    backgroundImage: `url(${setImage(props.caseStudy.bg)})`,
+    backgroundImage: `url(${props.caseStudy.bg})`,
     backgroundColor: props.caseStudy.bgColor
   }
 })
@@ -59,19 +59,19 @@ const bgStyles = computed(() => {
 <template lang="pug">
 .case-study-summary(:style="bgStyles")
   .container-small
-    img.logo(:src="$filters.image(caseStudy.logo)" alt="JP Casabianca")
+    img.logo(:src="caseStudy.logo" alt="JP Casabianca")
     p.title(:style="{ color: caseStudy.titleColor }") {{ caseStudy.title }}
     span.summary(:style="{ color: caseStudy.summaryColor }") {{ caseStudy.summary }}
   .container-medium.imgs
     img(
       v-if="caseStudy.image"
-      :src="$filters.image(caseStudy.image)"
+      :src="caseStudy.image"
       :alt="`${caseStudy.title} - JP Casabianca`"
       class="from-tablet"
     )
     img(
       v-if="caseStudy.mobile_image"
-      :src="$filters.image(caseStudy.mobile_image)"
+      :src="caseStudy.mobile_image"
       :alt="`${caseStudy.title} - JP Casabianca`"
       class="mobile"
     )
@@ -81,7 +81,7 @@ const bgStyles = computed(() => {
   .cta(v-if="withCta")
     Button(
       :type="caseStudy.button"
-      :link="`/work/${caseStudy.seo_slug}`"
+      :link="`/work/${caseStudy.slug}`"
       size="md"
     ) Read Case Study
 </template>

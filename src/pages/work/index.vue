@@ -31,7 +31,7 @@ div
       v-for="(caseStudy, i) in experienceStore.caseStudies"
       :key="i"
     )
-      CaseStudySummary(:case-study="caseStudy")
+      CaseStudySummary(:case-study="caseStudy.attributes")
 </template>
 
 <style lang="scss" scoped>

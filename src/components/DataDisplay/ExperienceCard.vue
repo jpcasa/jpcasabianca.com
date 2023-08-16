@@ -72,7 +72,7 @@ const toggleDrawer = () => showDrawer.value = !showDrawer.value
         p {{ location }}
       .bottom-item
         icon-calendar-alt
-        p {{ startDate }} - {{ endDate }}
+        p {{ startDate }} - {{ endDate ? endDate : 'Present' }}
     .bottom-right(v-if="link")
       a(:href="link" target="_blank")
         icon-link

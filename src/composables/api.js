@@ -22,12 +22,12 @@ export function useApi() {
 
   const { axiosClient } = setupApi()
 
-  const getCaseStudiesSync = () =>  axiosClient.get('/Case_Studies')
+  const getCaseStudiesSync = () =>  axiosClient.get('/case-studies')
 
   const getCaseStudies = async () => {
     loading.value = true
     try {
-      const { data } = await axiosClient.get('/Case_Studies?sort=sort,order')
+      const { data } = await axiosClient.get('/case-studies')
       loading.value = false
       return [null, data]
     } catch (error) {
@@ -79,7 +79,7 @@ export function useApi() {
   const getExperience = async () => {
     loadingExperience.value = true
     try {
-      const { data } = await axiosClient.get('/experience')
+      const { data } = await axiosClient.get('/experiences')
       loadingExperience.value = false
       return [null, data]
     } catch (error) {
@@ -92,8 +92,9 @@ export function useApi() {
   const getCaseStudy = async slug => {
     loading.value = true
     try {
-      const query = qs.stringify({ filter: { seo_slug: { _eq: slug }}})
-      const { data } = await axiosClient.get(`/Case_Studies?${query}`)
+      // const query = qs.stringify({ filter: { seo_slug: { _eq: slug }}})
+      const query = ''
+      const { data } = await axiosClient.get(`/case-studies?${query}`)
       loading.value = false
       return [null, data]
     } catch (error) {

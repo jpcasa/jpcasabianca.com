@@ -125,8 +125,8 @@ onMounted(() => {
             .chart-left
               RadarChart(:chart-data="skillsStore.chartData")
             .chart-right
-              p.title {{ skillsStore.activeSoftSkill.name }}
-              .description(v-html-safe="skillsStore.activeSoftSkill.description")
+              p.title {{ skillsStore.activeSoftSkill.attributes.name }}
+              .description(v-html-safe="skillsStore.activeSoftSkill.attributes.description")
               .options
                 .option
                   icon-arrow-left(
@@ -164,16 +164,16 @@ onMounted(() => {
             :key="i"
           )
             ExperienceCard(
-              :company="exp.company"
-              :logo="$filters.image(exp.logo)"
-              :role="exp.role"
-              :startDate="exp.start_date"
-              :endDate="exp.end_date"
-              :tags="exp.tags"
-              :summary="exp.summary"
-              :complete-summary="exp.complete_summary"
-              :location="exp.location"
-              :link="exp.link"
+              :company="exp.attributes.company"
+              :logo="exp.attributes.logo"
+              :role="exp.attributes.role"
+              :startDate="exp.attributes.start_date"
+              :endDate="exp.attributes.end_date"
+              :tags="exp.attributes.tags"
+              :summary="exp.attributes.summary"
+              :complete-summary="exp.attributes.complete_summary"
+              :location="exp.attributes.location"
+              :link="exp.attributes.link"
             )
           .pagination-parent(v-if="!experienceStore.subjectFilters.length")
             Pagination(
@@ -197,7 +197,7 @@ onMounted(() => {
         v-for="(caseStudy, i) in experienceStore.caseStudies.slice(0, 3)"
         :key="i"
       )
-        CaseStudySummary(:case-study="caseStudy")
+        CaseStudySummary(:case-study="caseStudy.attributes")
   .usual-apps
     .container-4
       TextSection(

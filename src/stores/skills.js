@@ -90,8 +90,8 @@ export const useSkillsStore = defineStore({
       return state.softSkills[state.softSkillsIndex]
     },
     chartData: state => {
-      const data = state.softSkills.map(skill => skill.level)
-      const labels = state.softSkills.map(skill => skill.name)
+      const data = state.softSkills.map(skill => skill.attributes.level)
+      const labels = state.softSkills.map(skill => skill.attributes.name)
       return {
         labels,
         datasets: [

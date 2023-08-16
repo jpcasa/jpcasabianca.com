@@ -27,11 +27,11 @@ export const useMenusStore = defineStore({
           link: '/creative-process',
           icon: markRaw(IconLightbulbAlt),
         },
-        {
-          name: 'Resources',
-          link: '/resources',
-          icon: markRaw(IconCloudComputing),
-        },
+        // {
+        //   name: 'Resources',
+        //   link: '/resources',
+        //   icon: markRaw(IconCloudComputing),
+        // },
         {
           name: 'Gallery',
           link: '/gallery',
@@ -62,15 +62,15 @@ export const useMenusStore = defineStore({
         link: '/creative-process',
         local: true,
       },
-      {
-        name: 'Resources',
-        link: '/resources',
-        local: true,
-      },
+      // {
+      //   name: 'Resources',
+      //   link: '/resources',
+      //   local: true,
+      // },
       {
         name: 'Gallery',
-        link: '/gallery',
-        local: true,
+        link: 'https://dribbble.com/jpcasabiancai',
+        local: false,
       },
       {
         name: 'Play',
