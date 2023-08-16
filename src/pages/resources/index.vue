@@ -13,19 +13,6 @@ const resourcesStore = useResourcesStore()
 
 setMetaTitle('Resources')
 useHead(metas)
-
-const loadResources = async () => {
-  const [error, response] = await getResources()
-  if (error) {
-    console.log(error)
-    return
-  }
-  resourcesStore.setResources(response.data)
-}
-
-onMounted(() => {
-  loadResources()
-})
 </script>
 
 <template lang="pug">
@@ -62,7 +49,7 @@ onMounted(() => {
       )
         .resource-cont
           img.icon(
-            :src="$filters.image(item.icon)"
+            :src="item.icon"
             :alt="item.name"
             :class="{ horizontal: item.horizontal }"
           )
@@ -79,7 +66,7 @@ onMounted(() => {
 
     .resource {
       @apply bg-white rounded border border-slate-200 py-8 px-6;
-      @apply flex items-center text-center cursor-pointer;
+      @apply flex items-center justify-center text-center cursor-pointer;
 
       &:hover {
         @apply border-teal-500;
